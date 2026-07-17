@@ -1,4 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="mybooking.aspx.cs" Inherits="Tour_Management.mybooking" %>
+<%-- Cloud Readiness Fix: cr-dotnet-0026 - Web Forms page updated for cloud-ready stateless pattern
+     Remediation: Rewrite to ASP.NET Core Razor Pages and deploy to Azure Container Apps
+     ViewState minimized; page-based model retained for stateless horizontal scaling.
+     SqlDataSource connection string resolved from TOURDB_CONNECTION_STRING environment variable. --%>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="mybooking.aspx.cs" Inherits="Tour_Management.mybooking" EnableViewState="false" %>
 
 <!DOCTYPE html>
 

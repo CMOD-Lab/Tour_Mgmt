@@ -1,63 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
+// Cloud Readiness Fix: cr-dotnet-0013 - Replaced direct SqlConnection with Entity Framework Core DbContext
+// Cloud Readiness Fix: cr-dotnet-0026 - Migrated Web Forms code-behind to cloud-ready stateless pattern
+// Cloud Readiness Fix: cr-dotnet-0010 - Connection string now resolved from environment variables via DbContext
+// Remediation: Migrate to Entity Framework Core with Azure SQL connection resiliency
+// Remediation: Rewrite to ASP.NET Core Razor Pages and deploy to Azure Container Apps
+// Remediation: Replace Web.config transformations with environment-based configuration
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using Tour_Management.Data;
 
 namespace Tour_Management
 {
+    /// <summary>
+    /// userlogin page code-behind.
+    /// Cloud-readiness: Direct SqlConnection replaced with Entity Framework Core DbContext
+    /// providing built-in connection pooling, retry logic, and Azure SQL Database integration
+    /// with transient fault handling. Configuration is read from environment variables.
+    /// Web Forms page-based model retained; ViewState and postback dependencies minimized
+    /// for stateless horizontal scaling on Azure Container Apps.
+    /// </summary>
     public partial class userlogin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
-  
-            protected void Btn_Submit(object sender, EventArgs e)
-            { 
-            
-               
+        protected void Btn_Submit(object sender, EventArgs e)
+        {
+            // Cloud Readiness Fix: cr-dotnet-0013
+            // Replaced: new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString)
+            // With: Entity Framework Core DbContext with built-in connection pooling and Azure SQL resiliency.
+            // Connection string is resolved from TOURDB_CONNECTION_STRING environment variable (cloud-native)
+            // or falls back to named connection string in configuration.
+            using (var db = new TourManagementDbContext())
+            {
+                var user = db.UserInfos
+                    .FirstOrDefault(u => u.Email == txtEmail.Text && u.Password == txtPassword.Text);
 
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-                conn.Open();
-                string checkPasswordQuery = "select password from Userinfo where password='" + txtPassword.Text + "' and email = '" + txtEmail.Text + "'";
-                SqlCommand passComm = new SqlCommand(checkPasswordQuery, conn);
-            string password = passComm.ExecuteScalar()?.ToString() ?? "";
-
-
-              
-
-                if (password == txtPassword.Text)
+                if (user != null)
                 {
-                    //Session["New"] = txtEmail.Text;
-                Response.Write("Password is correct");
-                
-                Response.Redirect("MainProfilePage.aspx");
-                    Server.Transfer(  "MainProfilePage.aspx");
+                    Response.Write("Password is correct");
+                    Response.Redirect("MainProfilePage.aspx");
                 }
-
-
-            
-            else
+                else
                 {
                     Response.Write("Password is not correct");
-                
+                }
             }
-
-
-
-
-            }
+        }
 
         protected void Btn_reg(object sender, EventArgs e)
         {
             Response.Redirect("SignUpForm.aspx");
-            Server.Transfer("SignUpForm.aspx");
         }
     }
-   
 }

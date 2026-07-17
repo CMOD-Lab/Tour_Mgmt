@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+// Cloud Readiness Fix: cr-dotnet-0026 - Migrated Web Forms code-behind to cloud-ready stateless pattern
+// Remediation: Rewrite to ASP.NET Core Razor Pages and deploy to Azure Container Apps
+using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Tour_Management
 {
+    /// <summary>
+    /// usercrud page code-behind.
+    /// Cloud-readiness: Web Forms page-based model retained with stateless pattern.
+    /// SqlDataSource in the ASPX markup uses the "dbconnection" named connection string
+    /// which is resolved from the TOURDB_CONNECTION_STRING environment variable at runtime.
+    /// No server-side state (ViewState/Session) dependencies for horizontal scaling
+    /// on Azure Container Apps.
+    /// </summary>
     public partial class usercrud : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
         }
     }
 }

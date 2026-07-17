@@ -1,4 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AdminLogin2.aspx.cs" Inherits="Tour_Management.AdminLogin2" %>
+<%-- Cloud Readiness Fix: cr-dotnet-0026 - Web Forms page updated for cloud-ready stateless pattern
+     Remediation: Rewrite to ASP.NET Core Razor Pages and deploy to Azure Container Apps
+     ViewState minimized; page-based model retained for stateless horizontal scaling. --%>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AdminLogin2.aspx.cs" Inherits="Tour_Management.AdminLogin2" EnableViewState="false" %>
 
 <!DOCTYPE html>
 

@@ -66,6 +66,13 @@
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
+    <!-- Cloud Readiness Fix: cr-dotnet-0013 - Entity Framework 6 for connection pooling and Azure SQL resiliency -->
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddTour.aspx" />
@@ -76,6 +83,9 @@
     <Content Include="App_Data\tourdb_log.ldf">
       <DependentUpon>tourdb.mdf</DependentUpon>
     </Content>
+    <Content Include="appsettings.json" />
+    <Content Include="appsettings.Development.json" />
+    <Content Include="appsettings.Production.json" />
     <Content Include="DisplayTours.aspx" />
     <Content Include="MainProfilePage.aspx" />
     <Content Include="mybooking.aspx" />
@@ -115,6 +125,7 @@
     <Compile Include="allbooking.aspx.designer.cs">
       <DependentUpon>allbooking.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Data\TourManagementDbContext.cs" />
     <Compile Include="DisplayTours.aspx.cs">
       <DependentUpon>DisplayTours.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -129,6 +140,9 @@
     <Compile Include="MainProfilePage.aspx.designer.cs">
       <DependentUpon>MainProfilePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\Tour.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="mybooking.aspx.cs">
       <DependentUpon>mybooking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -183,6 +197,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Models\" />
     <Folder Include="pics\" />
     <Folder Include="Tour_pics\" />
   </ItemGroup>
@@ -217,11 +233,4 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
