@@ -1,44 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+// This file has been migrated to ASP.NET Core Razor Pages.
+// The Web Forms page Order.aspx has been replaced by Pages/Tours/Order.cshtml
+// with its code-behind at Pages/Tours/Order.cshtml.cs.
+//
+// Fixes applied:
+//   cr-dotnet-0013: Direct SqlConnection replaced with Entity Framework Core
+//                   (TourManagementDbContext) with Azure SQL connection resiliency
+//                   (EnableRetryOnFailure) and built-in connection pooling.
+//   cr-dotnet-0026: Web Forms (System.Web.UI.Page) replaced with ASP.NET Core
+//                   Razor Pages (PageModel), eliminating ViewState, postbacks,
+//                   and server affinity for stateless horizontal scaling.
+//   cr-dotnet-0010: ConfigurationManager.ConnectionStrings replaced with
+//                   IConfiguration reading from appsettings.json and
+//                   environment variables at runtime.
+//
+// See: Pages/Tours/Order.cshtml.cs
+
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Tour_Management.Data;
 
 namespace Tour_Management
 {
-    public partial class Order : System.Web.UI.Page
+    // Stub retained for reference — active implementation is in Pages/Tours/Order.cshtml.cs
+    [Obsolete("Migrated to ASP.NET Core Razor Pages. See Pages/Tours/Order.cshtml.cs")]
+    public class OrderLegacyStub
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-          
-        }
-
-        protected void btn_click(object sender, EventArgs e)
-        {
-               SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-                conn.Open();
-                string insertQuery = "insert into booking(TOUR_NAME,PLACE,Email,FirstName) values(@TOUR_NAME,@PLACE,@Email,@FirstName)";
-                SqlCommand com = new SqlCommand(insertQuery, conn);
-                com.Parameters.AddWithValue("@TOUR_NAME", tour_name.Text);
-                
-                com.Parameters.AddWithValue("@PLACE", city.Text);
-               
-                com.Parameters.AddWithValue("@Email",number.Text);
-                com.Parameters.AddWithValue("@FirstName", name.Text);
-
-                com.ExecuteNonQuery();
-                Response.Write("Registration Successful");
-                Response.Redirect("mybooking.aspx");
-                Server.Transfer("mybooking.aspx");
-                conn.Close();
-
-
-
-            
-           
-        }
+        // Original Web Forms code-behind replaced by Razor Page model.
+        // EF Core DbContext (TourManagementDbContext) injected via DI
+        // replaces: new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString)
     }
 }

@@ -1,0 +1,48 @@
+@page
+@model Tour_Management.Pages.Tours.DisplayToursModel
+@{
+    ViewData["Title"] = "Display Tours";
+}
+
+<div class="page-header">
+    <h1>Available Tours</h1>
+</div>
+
+<div class="container">
+    @if (Model.Tours.Any())
+    {
+        <table style="width:100%; color:white; border-collapse:collapse;">
+            <thead>
+                <tr>
+                    <th>Tour Name</th>
+                    <th>Place</th>
+                    <th>Days</th>
+                    <th>Price</th>
+                    <th>Locations</th>
+                    <th>Info</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tour in Model.Tours)
+                {
+                    <tr>
+                        <td>@tour.TourName</td>
+                        <td>@tour.Place</td>
+                        <td>@tour.Days</td>
+                        <td>@tour.Price.ToString("C")</td>
+                        <td>@tour.Locations</td>
+                        <td>@tour.TourInfo</td>
+                        <td>
+                            <a href="/Tours/Order?tourName=@Uri.EscapeDataString(tour.TourName)" class="btn">Book</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No tours available at this time.</p>
+    }
+</div>

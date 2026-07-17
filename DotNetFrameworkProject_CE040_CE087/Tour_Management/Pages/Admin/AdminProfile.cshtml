@@ -1,0 +1,21 @@
+@page
+@model Tour_Management.Pages.Admin.AdminProfileModel
+@{
+    ViewData["Title"] = "Admin Profile";
+}
+
+<div class="page-header">
+    <h1>Admin Dashboard</h1>
+</div>
+
+<div class="container">
+    <div style="margin: 20px;">
+        <p>Welcome, Administrator.</p>
+        <nav>
+            <a href="/Tours/TourCrud" class="btn" style="margin:5px;">Manage Tours</a>
+            <a href="/Tours/AddTour" class="btn" style="margin:5px;">Add New Tour</a>
+            <a href="/Admin/AllBooking" class="btn" style="margin:5px;">All Bookings</a>
+            <a href="/User/UserCrud" class="btn" style="margin:5px;">Manage Users</a>
+        </nav>
+    </div>
+</div>

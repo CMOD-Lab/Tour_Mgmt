@@ -1,0 +1,20 @@
+@page
+@model Tour_Management.Pages.User.MainProfileModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="page-header">
+    <h1>My Profile</h1>
+</div>
+
+<div class="container">
+    <div style="margin: 20px;">
+        <p>Welcome to your profile page.</p>
+        <nav>
+            <a href="/Tours/DisplayTours" class="btn" style="margin:5px;">Browse Tours</a>
+            <a href="/User/MyBooking" class="btn" style="margin:5px;">My Bookings</a>
+            <a href="/User/UserCrud" class="btn" style="margin:5px;">Manage Profile</a>
+        </nav>
+    </div>
+</div>

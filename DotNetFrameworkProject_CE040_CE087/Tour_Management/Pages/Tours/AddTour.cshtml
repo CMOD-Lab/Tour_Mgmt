@@ -1,0 +1,86 @@
+@page
+@model Tour_Management.Pages.Tours.AddTourModel
+@{
+    ViewData["Title"] = "Add New Tour";
+}
+
+<div class="page-header">
+    <h1>Add New Tour</h1>
+</div>
+
+<div class="container">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="@(Model.IsSuccess ? "alert-success" : "alert-danger")">
+            @Model.StatusMessage
+        </div>
+    }
+
+    <div class="row">
+        <div class="form-horizontal col-md-7">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="control-label col-sm-3" asp-for="Input.TourName">Name of Tour</label>
+                    <div class="col-sm-6">
+                        <input asp-for="Input.TourName" class="form-control" required />
+                        <span asp-validation-for="Input.TourName" class="alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3" asp-for="Input.Place">Place</label>
+                    <div class="col-sm-6">
+                        <input asp-for="Input.Place" class="form-control" required />
+                        <span asp-validation-for="Input.Place" class="alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3" asp-for="Input.Days">Days</label>
+                    <div class="col-sm-6">
+                        <input asp-for="Input.Days" class="form-control" type="number" required />
+                        <span asp-validation-for="Input.Days" class="alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3" asp-for="Input.Locations">Locations</label>
+                    <div class="col-sm-6">
+                        <input asp-for="Input.Locations" class="form-control" required />
+                        <span asp-validation-for="Input.Locations" class="alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <p style="text-align:center; font-size:30px">Image for Tour</p>
+                    <input type="file" name="TourImage" accept="image/*" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3" asp-for="Input.Price">Price</label>
+                    <div class="col-sm-6">
+                        <input asp-for="Input.Price" class="form-control" type="number" step="0.01" required />
+                        <span asp-validation-for="Input.Price" class="alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3" asp-for="Input.TourInfo">Tour Info</label>
+                    <div class="col-sm-6">
+                        <textarea asp-for="Input.TourInfo" class="form-control" maxlength="250"></textarea>
+                        <span asp-validation-for="Input.TourInfo" class="alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-sm-3">
+                        <button type="submit" class="btn">Register</button>
+                    </div>
+                    <div class="control-label col-sm-3">
+                        <button type="reset" class="btn">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

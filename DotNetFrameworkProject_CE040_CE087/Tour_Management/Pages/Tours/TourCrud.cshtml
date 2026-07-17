@@ -1,0 +1,60 @@
+@page
+@model Tour_Management.Pages.Tours.TourCrudModel
+@{
+    ViewData["Title"] = "Tour Management";
+}
+
+<div class="page-header">
+    <h1>Tour Management</h1>
+</div>
+
+<div class="container">
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="@(Model.IsSuccess ? "alert-success" : "alert-danger")">
+            @Model.StatusMessage
+        </div>
+    }
+
+    <div style="margin-bottom:20px;">
+        <a href="/Tours/AddTour" class="btn">Add New Tour</a>
+    </div>
+
+    @if (Model.Tours.Any())
+    {
+        <table style="width:100%; color:white; border-collapse:collapse;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tour Name</th>
+                    <th>Place</th>
+                    <th>Days</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tour in Model.Tours)
+                {
+                    <tr>
+                        <td>@tour.Id</td>
+                        <td>@tour.TourName</td>
+                        <td>@tour.Place</td>
+                        <td>@tour.Days</td>
+                        <td>@tour.Price.ToString("C")</td>
+                        <td>
+                            <form method="post" asp-page-handler="Delete" style="display:inline;">
+                                <input type="hidden" name="id" value="@tour.Id" />
+                                <button type="submit" class="btn" onclick="return confirm('Delete this tour?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No tours found.</p>
+    }
+</div>

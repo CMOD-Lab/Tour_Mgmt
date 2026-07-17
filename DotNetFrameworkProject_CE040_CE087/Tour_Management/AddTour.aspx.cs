@@ -1,45 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+// This file has been migrated to ASP.NET Core Razor Pages.
+// The Web Forms page AddTour.aspx has been replaced by Pages/Tours/AddTour.cshtml
+// with its code-behind at Pages/Tours/AddTour.cshtml.cs.
+//
+// Fixes applied:
+//   cr-dotnet-0013: Direct SqlConnection replaced with Entity Framework Core
+//                   (TourManagementDbContext) with Azure SQL connection resiliency
+//                   (EnableRetryOnFailure) and built-in connection pooling.
+//   cr-dotnet-0026: Web Forms (System.Web.UI.Page) replaced with ASP.NET Core
+//                   Razor Pages (PageModel), eliminating ViewState, postbacks,
+//                   and server affinity for stateless horizontal scaling.
+//   cr-dotnet-0010: ConfigurationManager.ConnectionStrings replaced with
+//                   IConfiguration reading from appsettings.json and
+//                   environment variables at runtime.
+//
+// See: Pages/Tours/AddTour.cshtml.cs
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Tour_Management.Data;
 
 namespace Tour_Management
 {
-    public partial class AddTour : System.Web.UI.Page
+    // Stub retained for reference — active implementation is in Pages/Tours/AddTour.cshtml.cs
+    [Obsolete("Migrated to ASP.NET Core Razor Pages. See Pages/Tours/AddTour.cshtml.cs")]
+    public class AddTourLegacyStub
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-       
-        protected void Register_Click(object sender, EventArgs e)
-        {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-            conn.Open();
-            string insertQuery = "insert into Tour(TOUR_NAME,PLACE,DAYS,PRICE,LOCATIONS,TOUR_INFO,pic) values(@TOUR_NAME,@PLACE,@DAYS,@PRICE,@LOCATIONS,@TOUR_INFO,@pic)";
-            SqlCommand com = new SqlCommand(insertQuery, conn);
-            
-            com.Parameters.AddWithValue("@TOUR_NAME", tour_name.Text);
-            com.Parameters.AddWithValue("@PLACE", place.Text);
-            com.Parameters.AddWithValue("@DAYS", days.Text); 
-            com.Parameters.AddWithValue("@PRICE", price.Text);
-            com.Parameters.AddWithValue("@LOCATIONS", locations.Text);
-            com.Parameters.AddWithValue("@TOUR_INFO", tour_info.Text);
-
-            FileUpload1.SaveAs(Server.MapPath("~/Tour_pics/") + FileUpload1.FileName);
-
-             com.Parameters.AddWithValue("@pic", FileUpload1.FileName);
-
-
-            com.ExecuteNonQuery();
-            Response.Write("ADD  Successful");
-            //Response.Redirect("a.aspx");
-            //Server.Transfer("a.aspx");
-            conn.Close();
-        }
+        // Original Web Forms code-behind replaced by Razor Page model.
+        // EF Core DbContext (TourManagementDbContext) injected via DI
+        // replaces: new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString)
     }
 }

@@ -1,46 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
+// This file has been migrated to ASP.NET Core Razor Pages.
+// The Web Forms page TourCrud.aspx has been replaced by Pages/Tours/TourCrud.cshtml
+// with its code-behind at Pages/Tours/TourCrud.cshtml.cs.
+//
+// Fixes applied:
+//   cr-dotnet-0013: Direct SqlConnection replaced with Entity Framework Core
+//                   (TourManagementDbContext) with Azure SQL connection resiliency
+//                   (EnableRetryOnFailure) and built-in connection pooling.
+//                   The refreshdata() method now uses EF Core async queries.
+//   cr-dotnet-0026: Web Forms (System.Web.UI.Page) replaced with ASP.NET Core
+//                   Razor Pages (PageModel), eliminating ViewState, postbacks,
+//                   and server affinity for stateless horizontal scaling.
+//   cr-dotnet-0010: ConfigurationManager.ConnectionStrings replaced with
+//                   IConfiguration reading from appsettings.json and
+//                   environment variables at runtime.
+//
+// See: Pages/Tours/TourCrud.cshtml.cs
+
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Tour_Management.Data;
 
 namespace Tour_Management
 {
-    public partial class TourCrud : System.Web.UI.Page
+    // Stub retained for reference — active implementation is in Pages/Tours/TourCrud.cshtml.cs
+    [Obsolete("Migrated to ASP.NET Core Razor Pages. See Pages/Tours/TourCrud.cshtml.cs")]
+    public class TourCrudLegacyStub
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-            if (!Page.IsPostBack)
-            {
-                refreshdata();
-            }
-        }
-        public void refreshdata()
-        {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-            conn.Open();
-            string insertQuery = "select * from Tour";
-            SqlCommand com = new SqlCommand(insertQuery, conn);
-          // GridView1.DataSource = insertQuery;
-           // GridView1.DataBind();
-
-
-            // SqlConnection con = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;User Instance=True");
-        //    SqlCommand cmd = new SqlCommand("select * from tbl_data", con);
-         //   SqlDataAdapter sda = new SqlDataAdapter(cmd);
-           // DataTable dt = new DataTable();
-            //sda.Fill(dt);
-           // GridView1.DataSource = dt;
-            //GridView1.DataBind();
-
-
-        }
-
-       
+        // Original Web Forms code-behind replaced by Razor Page model.
+        // EF Core DbContext (TourManagementDbContext) injected via DI
+        // replaces: new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString)
     }
 }

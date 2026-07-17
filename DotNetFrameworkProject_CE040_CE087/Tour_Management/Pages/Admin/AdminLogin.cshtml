@@ -1,0 +1,29 @@
+@page
+@model Tour_Management.Pages.Admin.AdminLoginModel
+@{
+    ViewData["Title"] = "Admin Login";
+}
+
+<div class="container">
+    <h1>Admin Login</h1>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="@(Model.IsSuccess ? "alert-success" : "alert-danger")">
+            @Model.StatusMessage
+        </div>
+    }
+
+    <form method="post">
+        <label>Email</label><br />
+        <input asp-for="Input.Email" type="email" required /><br />
+        <span asp-validation-for="Input.Email" class="alert-danger"></span>
+
+        <label>Password</label><br />
+        <input asp-for="Input.Password" type="password" required /><br />
+        <span asp-validation-for="Input.Password" class="alert-danger"></span>
+
+        <br />
+        <button type="submit" class="btn">Login</button>
+    </form>
+</div>

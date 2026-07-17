@@ -1,0 +1,46 @@
+@page
+@model Tour_Management.Pages.User.LoginModel
+@{
+    ViewData["Title"] = "User Login";
+}
+
+<div class="login-form">
+    <div class="container">
+        <div class="page-header">
+            <h1>User Login</h1>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.StatusMessage))
+        {
+            <div class="@(Model.IsSuccess ? "alert-success" : "alert-danger")">
+                @Model.StatusMessage
+            </div>
+        }
+
+        <form method="post">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" asp-for="Input.Email">Email</label>
+                    <div class="col-sm-6">
+                        <input asp-for="Input.Email" class="form-control" type="email" required />
+                        <span asp-validation-for="Input.Email" class="alert-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4" asp-for="Input.Password">Password</label>
+                    <div class="col-sm-6">
+                        <input asp-for="Input.Password" class="form-control" type="password" required />
+                        <span asp-validation-for="Input.Password" class="alert-danger"></span>
+                    </div>
+                    <div class="control-label col-sm-2">
+                        <button type="submit" class="btn" style="height:35px; width:92px;">Login</button>
+                    </div>
+                    <div class="control-label col-sm-2">
+                        <a href="/User/SignUp" class="btn" style="height:38px; width:137px; display:inline-block; line-height:22px;">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
