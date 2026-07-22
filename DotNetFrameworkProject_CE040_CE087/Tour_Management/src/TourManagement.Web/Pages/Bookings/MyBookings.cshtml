@@ -1,0 +1,66 @@
+@page
+@model TourManagement.Web.Pages.Bookings.MyBookingsModel
+@{
+    ViewData["Title"] = "My Bookings";
+}
+
+<h1 class="mb-4"><i class="bi bi-calendar-check me-2"></i>My Bookings</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        <i class="bi bi-check-circle me-2"></i>@TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (Model.Bookings.Any())
+{
+    <div class="row">
+        @foreach (var booking in Model.Bookings)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">@booking.TourName</h5>
+                        @if (booking.IsActive)
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Cancelled</span>
+                        }
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <i class="bi bi-geo-alt me-2 text-primary"></i><strong>Place:</strong> @booking.Place
+                        </p>
+                        <p class="card-text">
+                            <i class="bi bi-calendar me-2 text-success"></i><strong>Booked On:</strong>
+                            @booking.BookingDate.ToString("MMMM dd, yyyy")
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-page="Details" asp-route-id="@booking.Id" class="btn btn-info btn-sm text-white">
+                            <i class="bi bi-eye me-1"></i>Details
+                        </a>
+                        @if (booking.IsActive)
+                        {
+                            <a asp-page="Delete" asp-route-id="@booking.Id" class="btn btn-danger btn-sm ms-1">
+                                <i class="bi bi-x-circle me-1"></i>Cancel
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        <i class="bi bi-info-circle me-2"></i>You have no bookings yet.
+        <a asp-page="/Tours/Index" class="alert-link">Browse tours to book one!</a>
+    </div>
+}

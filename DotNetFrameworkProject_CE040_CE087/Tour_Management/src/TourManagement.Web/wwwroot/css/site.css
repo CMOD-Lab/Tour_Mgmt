@@ -1,0 +1,81 @@
+/* Tour Management - Site CSS */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.jumbotron {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card-img-top {
+    border-radius: 10px 10px 0 0;
+}
+
+.footer {
+    border-top: 1px solid #dee2e6;
+}
+
+.badge {
+    font-size: 0.85em;
+}
+
+/* Tour card image placeholder */
+.tour-img-placeholder {
+    height: 200px;
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Admin dashboard cards */
+.dashboard-stat-card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Form styling */
+.form-control:focus,
+.form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Table styling */
+.table th {
+    font-weight: 600;
+}
+
+/* Alert styling */
+.alert {
+    border-radius: 10px;
+}
+
+/* Button styling */
+.btn {
+    border-radius: 6px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+}

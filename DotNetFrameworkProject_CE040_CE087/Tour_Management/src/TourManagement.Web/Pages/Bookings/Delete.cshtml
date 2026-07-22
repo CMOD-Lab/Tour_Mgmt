@@ -1,0 +1,47 @@
+@page "{id:int}"
+@model TourManagement.Web.Pages.Bookings.DeleteModel
+@{
+    ViewData["Title"] = "Cancel Booking";
+}
+
+<h1 class="mb-4 text-danger"><i class="bi bi-x-circle me-2"></i>Cancel Booking</h1>
+
+@if (Model.Booking == null)
+{
+    <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle me-2"></i>Booking not found.
+        <a asp-page="MyBookings" class="alert-link">Back to My Bookings</a>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        Are you sure you want to cancel this booking?
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Tour Name</dt>
+                <dd class="col-sm-9">@Model.Booking.TourName</dd>
+                <dt class="col-sm-3">Place</dt>
+                <dd class="col-sm-9">@Model.Booking.Place</dd>
+                <dt class="col-sm-3">Booking Date</dt>
+                <dd class="col-sm-9">@Model.Booking.BookingDate.ToString("MMMM dd, yyyy")</dd>
+            </dl>
+        </div>
+    </div>
+
+    <form method="post">
+        <input type="hidden" name="id" value="@Model.Booking.Id" />
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-x-circle me-2"></i>Yes, Cancel Booking
+            </button>
+            <a asp-page="MyBookings" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-2"></i>Keep Booking
+            </a>
+        </div>
+    </form>
+}

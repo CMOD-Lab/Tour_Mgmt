@@ -1,0 +1,58 @@
+@page "{id:int}"
+@model TourManagement.Web.Pages.Tours.DeleteModel
+@{
+    ViewData["Title"] = "Delete Tour";
+}
+
+<nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-page="/Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-page="Index">Tours</a></li>
+        <li class="breadcrumb-item active">Delete Tour</li>
+    </ol>
+</nav>
+
+<h1 class="mb-4 text-danger"><i class="bi bi-trash me-2"></i>Delete Tour</h1>
+
+@if (Model.Tour == null)
+{
+    <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle me-2"></i>Tour not found.
+        <a asp-page="Index" class="alert-link">Back to Tours</a>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        <strong>Warning!</strong> Are you sure you want to delete this tour? This action cannot be undone.
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Tour.TourName</h5>
+            <dl class="row">
+                <dt class="col-sm-3">Place</dt>
+                <dd class="col-sm-9">@Model.Tour.Place</dd>
+                <dt class="col-sm-3">Days</dt>
+                <dd class="col-sm-9">@Model.Tour.Days</dd>
+                <dt class="col-sm-3">Price</dt>
+                <dd class="col-sm-9">$@Model.Tour.Price.ToString("N2")</dd>
+                <dt class="col-sm-3">Locations</dt>
+                <dd class="col-sm-9">@Model.Tour.Locations</dd>
+            </dl>
+        </div>
+    </div>
+
+    <form method="post">
+        <input type="hidden" name="id" value="@Model.Tour.Id" />
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash me-2"></i>Yes, Delete Tour
+            </button>
+            <a asp-page="Index" class="btn btn-outline-secondary">
+                <i class="bi bi-x-circle me-2"></i>Cancel
+            </a>
+        </div>
+    </form>
+}

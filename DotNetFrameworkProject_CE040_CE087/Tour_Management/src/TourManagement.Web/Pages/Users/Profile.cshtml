@@ -1,0 +1,97 @@
+@page
+@model TourManagement.Web.Pages.Users.ProfileModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<h1 class="mb-4"><i class="bi bi-person-circle me-2"></i>My Profile</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        <i class="bi bi-check-circle me-2"></i>@TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (Model.User == null)
+{
+    <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle me-2"></i>User profile not found.
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Profile Information</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Full Name</dt>
+                        <dd class="col-sm-8">@Model.User.FirstName @Model.User.LastName</dd>
+                        <dt class="col-sm-4">Email</dt>
+                        <dd class="col-sm-8">@Model.User.Email</dd>
+                        <dt class="col-sm-4">Gender</dt>
+                        <dd class="col-sm-8">@(Model.User.Gender ?? "Not specified")</dd>
+                        <dt class="col-sm-4">Date of Birth</dt>
+                        <dd class="col-sm-8">@(Model.User.DateOfBirth?.ToString("MMMM dd, yyyy") ?? "Not specified")</dd>
+                        <dt class="col-sm-4">Address</dt>
+                        <dd class="col-sm-8">
+                            @if (!string.IsNullOrEmpty(Model.User.Street))
+                            {
+                                <span>@Model.User.Street, </span>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.User.City))
+                            {
+                                <span>@Model.User.City, </span>
+                            }
+                            @(Model.User.State ?? "")
+                        </dd>
+                        <dt class="col-sm-4">Member Since</dt>
+                        <dd class="col-sm-8">@Model.User.CreatedDate.ToString("MMMM dd, yyyy")</dd>
+                    </dl>
+                    <a asp-page="Edit" asp-route-id="@Model.User.Id" class="btn btn-warning">
+                        <i class="bi bi-pencil me-2"></i>Edit Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">My Recent Bookings</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.RecentBookings.Any())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var booking in Model.RecentBookings)
+                            {
+                                <li class="list-group-item">
+                                    <strong>@booking.TourName</strong><br />
+                                    <small class="text-muted">
+                                        <i class="bi bi-geo-alt me-1"></i>@booking.Place |
+                                        <i class="bi bi-calendar me-1"></i>@booking.BookingDate.ToString("MMM dd, yyyy")
+                                    </small>
+                                </li>
+                            }
+                        </ul>
+                        <div class="mt-2">
+                            <a asp-page="/Bookings/MyBookings" class="btn btn-outline-success btn-sm">
+                                View All Bookings
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No bookings yet.</p>
+                        <a asp-page="/Tours/Index" class="btn btn-primary btn-sm">Browse Tours</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
