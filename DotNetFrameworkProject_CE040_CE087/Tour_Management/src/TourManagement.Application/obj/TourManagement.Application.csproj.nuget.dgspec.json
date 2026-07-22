@@ -10,21 +10,22 @@
         "projectUniqueName": "/modernize-data/studio-data/TNT1001/APP104891/transformed-code/146/studio-workspace/Full app/DotNetFrameworkProject_CE040_CE087/Tour_Management/src/TourManagement.Application/TourManagement.Application.csproj",
         "projectName": "TourManagement.Application",
         "projectPath": "/modernize-data/studio-data/TNT1001/APP104891/transformed-code/146/studio-workspace/Full app/DotNetFrameworkProject_CE040_CE087/Tour_Management/src/TourManagement.Application/TourManagement.Application.csproj",
-        "packagesPath": "/app/.nuget/packages/",
+        "packagesPath": "/app/.nuget/packages",
         "outputPath": "/modernize-data/studio-data/TNT1001/APP104891/transformed-code/146/studio-workspace/Full app/DotNetFrameworkProject_CE040_CE087/Tour_Management/src/TourManagement.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
+          "/modernize-data/studio-data/TNT1001/APP104891/transformed-code/146/studio-workspace/Full app/DotNetFrameworkProject_CE040_CE087/Tour_Management/NuGet.Config",
           "/app/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net9.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "/app/.nuget/packages": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net9.0": {
+            "targetAlias": "net9.0",
             "projectReferences": {
               "/modernize-data/studio-data/TNT1001/APP104891/transformed-code/146/studio-workspace/Full app/DotNetFrameworkProject_CE040_CE087/Tour_Management/src/TourManagement.Domain/TourManagement.Domain.csproj": {
                 "projectPath": "/modernize-data/studio-data/TNT1001/APP104891/transformed-code/146/studio-workspace/Full app/DotNetFrameworkProject_CE040_CE087/Tour_Management/src/TourManagement.Domain/TourManagement.Domain.csproj"
@@ -45,16 +46,12 @@
         "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[12.0.1, )"
-            },
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[13.0.1, )"
             },
             "FluentValidation": {
               "target": "Package",
@@ -66,11 +63,11 @@
             },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[9.0.0, )"
             },
             "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[9.0.0, )"
             }
           },
           "imports": [
@@ -84,16 +81,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.16, 8.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.16, 8.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -109,21 +96,22 @@
         "projectUniqueName": "/modernize-data/studio-data/TNT1001/APP104891/transformed-code/146/studio-workspace/Full app/DotNetFrameworkProject_CE040_CE087/Tour_Management/src/TourManagement.Domain/TourManagement.Domain.csproj",
         "projectName": "TourManagement.Domain",
         "projectPath": "/modernize-data/studio-data/TNT1001/APP104891/transformed-code/146/studio-workspace/Full app/DotNetFrameworkProject_CE040_CE087/Tour_Management/src/TourManagement.Domain/TourManagement.Domain.csproj",
-        "packagesPath": "/app/.nuget/packages/",
+        "packagesPath": "/app/.nuget/packages",
         "outputPath": "/modernize-data/studio-data/TNT1001/APP104891/transformed-code/146/studio-workspace/Full app/DotNetFrameworkProject_CE040_CE087/Tour_Management/src/TourManagement.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
+          "/modernize-data/studio-data/TNT1001/APP104891/transformed-code/146/studio-workspace/Full app/DotNetFrameworkProject_CE040_CE087/Tour_Management/NuGet.Config",
           "/app/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net9.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "/app/.nuget/packages": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net9.0": {
+            "targetAlias": "net9.0",
             "projectReferences": {}
           }
         },
@@ -140,8 +128,8 @@
         "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "imports": [
             "net461",
             "net462",
@@ -153,16 +141,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.16, 8.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.16, 8.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

@@ -15,7 +15,7 @@ public class ProfileModel : PageModel
     private readonly ILogger<ProfileModel> _logger;
 
     /// <summary>Gets the user profile.</summary>
-    public UserDto? User { get; private set; }
+    public new UserDto? User { get; private set; }
 
     /// <summary>Gets the user's recent bookings.</summary>
     public IEnumerable<BookingDto> RecentBookings { get; private set; } = Enumerable.Empty<BookingDto>();

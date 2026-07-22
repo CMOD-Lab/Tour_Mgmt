@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zMk+tbtdpOY=",
+  "dgSpecHash": "iWr0dcCHVFo=",
   "success": true,
   "projectFilePath": "/modernize-data/studio-data/TNT1001/APP104891/transformed-code/146/studio-workspace/Full app/DotNetFrameworkProject_CE040_CE087/Tour_Management/src/TourManagement.Domain/TourManagement.Domain.csproj",
-  "expectedPackageFiles": [
-    "/app/.nuget/packages/microsoft.netcore.app.ref/8.0.16/microsoft.netcore.app.ref.8.0.16.nupkg.sha512",
-    "/app/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.16/microsoft.aspnetcore.app.ref.8.0.16.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

@@ -15,7 +15,7 @@ public class DeleteModel : PageModel
     private readonly ILogger<DeleteModel> _logger;
 
     /// <summary>Gets the user to be deleted.</summary>
-    public UserDto? User { get; private set; }
+    public new UserDto? User { get; private set; }
 
     /// <summary>
     /// Initializes a new instance of <see cref="DeleteModel"/>.
