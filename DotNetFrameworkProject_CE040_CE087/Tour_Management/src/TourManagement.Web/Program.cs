@@ -2,6 +2,9 @@ using Serilog;
 using TourManagement.Application.Extensions;
 using TourManagement.Infrastructure.Extensions;
 
+// Enable legacy timestamp behavior for Npgsql DateTime compatibility
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure Serilog

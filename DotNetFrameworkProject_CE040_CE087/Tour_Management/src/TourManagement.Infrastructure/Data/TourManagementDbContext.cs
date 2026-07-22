@@ -6,6 +6,7 @@ namespace TourManagement.Infrastructure.Data;
 
 /// <summary>
 /// Entity Framework Core database context for Tour Management application.
+/// Configured for PostgreSQL with snake_case naming conventions.
 /// </summary>
 public class TourManagementDbContext : DbContext
 {
@@ -32,8 +33,24 @@ public class TourManagementDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        // Set default schema to public for PostgreSQL
+        modelBuilder.HasDefaultSchema("public");
+
+        // Enable PostgreSQL extensions
+        modelBuilder.HasPostgresExtension("uuid-ossp");
+
         modelBuilder.ApplyConfiguration(new TourConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new BookingConfiguration());
+    }
+
+    /// <inheritdoc/>
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            // Enable legacy timestamp behavior for DateTime compatibility
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        }
     }
 }

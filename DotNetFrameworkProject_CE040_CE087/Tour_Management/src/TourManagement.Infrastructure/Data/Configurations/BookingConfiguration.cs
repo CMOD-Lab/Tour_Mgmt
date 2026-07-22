@@ -6,6 +6,7 @@ namespace TourManagement.Infrastructure.Data.Configurations;
 
 /// <summary>
 /// EF Core entity configuration for Booking.
+/// Configured for PostgreSQL compatibility with snake_case naming.
 /// </summary>
 public class BookingConfiguration : IEntityTypeConfiguration<Booking>
 {
@@ -19,39 +20,45 @@ public class BookingConfiguration : IEntityTypeConfiguration<Booking>
         builder.Property(b => b.TourName)
             .IsRequired()
             .HasMaxLength(200)
-            .HasColumnName("TOUR_NAME");
+            .HasColumnName("tour_name");
 
         builder.Property(b => b.Place)
             .IsRequired()
             .HasMaxLength(200)
-            .HasColumnName("PLACE");
+            .HasColumnName("place");
 
         builder.Property(b => b.Email)
             .IsRequired()
             .HasMaxLength(256)
-            .HasColumnName("Email");
+            .HasColumnName("email");
 
         builder.Property(b => b.FirstName)
             .IsRequired()
             .HasMaxLength(100)
-            .HasColumnName("FirstName");
+            .HasColumnName("first_name");
 
         builder.Property(b => b.TourId)
-            .HasColumnName("TourId");
+            .HasColumnName("tour_id");
 
         builder.Property(b => b.UserId)
-            .HasColumnName("UserId");
+            .HasColumnName("user_id");
 
         builder.Property(b => b.BookingDate)
             .IsRequired()
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasColumnName("booking_date")
+            .HasDefaultValueSql("NOW()");
 
         builder.Property(b => b.CreatedDate)
             .IsRequired()
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasColumnName("created_date")
+            .HasDefaultValueSql("NOW()");
+
+        builder.Property(b => b.ModifiedDate)
+            .HasColumnName("modified_date");
 
         builder.Property(b => b.IsActive)
             .IsRequired()
+            .HasColumnName("is_active")
             .HasDefaultValue(true);
 
         builder.HasOne(b => b.Tour)

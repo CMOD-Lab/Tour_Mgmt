@@ -6,44 +6,45 @@ namespace TourManagement.Infrastructure.Data.Configurations;
 
 /// <summary>
 /// EF Core entity configuration for Tour.
+/// Configured for PostgreSQL compatibility with snake_case naming.
 /// </summary>
 public class TourConfiguration : IEntityTypeConfiguration<Tour>
 {
     /// <inheritdoc/>
     public void Configure(EntityTypeBuilder<Tour> builder)
     {
-        builder.ToTable("Tour");
+        builder.ToTable("tour");
 
         builder.HasKey(t => t.Id);
 
         builder.Property(t => t.TourName)
             .IsRequired()
             .HasMaxLength(200)
-            .HasColumnName("TOUR_NAME");
+            .HasColumnName("tour_name");
 
         builder.Property(t => t.Place)
             .IsRequired()
             .HasMaxLength(200)
-            .HasColumnName("PLACE");
+            .HasColumnName("place");
 
         builder.Property(t => t.Days)
             .IsRequired()
-            .HasColumnName("DAYS");
+            .HasColumnName("days");
 
         builder.Property(t => t.Price)
             .IsRequired()
-            .HasColumnType("decimal(18,2)")
-            .HasColumnName("PRICE");
+            .HasColumnType("numeric(18,2)")
+            .HasColumnName("price");
 
         builder.Property(t => t.Locations)
             .IsRequired()
             .HasMaxLength(500)
-            .HasColumnName("LOCATIONS");
+            .HasColumnName("locations");
 
         builder.Property(t => t.TourInfo)
             .IsRequired()
             .HasMaxLength(2000)
-            .HasColumnName("TOUR_INFO");
+            .HasColumnName("tour_info");
 
         builder.Property(t => t.Pic)
             .HasMaxLength(500)
@@ -51,10 +52,15 @@ public class TourConfiguration : IEntityTypeConfiguration<Tour>
 
         builder.Property(t => t.CreatedDate)
             .IsRequired()
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasColumnName("created_date")
+            .HasDefaultValueSql("NOW()");
+
+        builder.Property(t => t.ModifiedDate)
+            .HasColumnName("modified_date");
 
         builder.Property(t => t.IsActive)
             .IsRequired()
+            .HasColumnName("is_active")
             .HasDefaultValue(true);
 
         builder.HasMany(t => t.Bookings)

@@ -6,20 +6,21 @@ namespace TourManagement.Infrastructure.Data.Configurations;
 
 /// <summary>
 /// EF Core entity configuration for User.
+/// Configured for PostgreSQL compatibility with snake_case naming.
 /// </summary>
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     /// <inheritdoc/>
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.ToTable("UserInfo");
+        builder.ToTable("user_info");
 
         builder.HasKey(u => u.Id);
 
         builder.Property(u => u.Email)
             .IsRequired()
             .HasMaxLength(256)
-            .HasColumnName("Email");
+            .HasColumnName("email");
 
         builder.HasIndex(u => u.Email)
             .IsUnique();
@@ -27,47 +28,53 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.FirstName)
             .IsRequired()
             .HasMaxLength(100)
-            .HasColumnName("FirstName");
+            .HasColumnName("first_name");
 
         builder.Property(u => u.LastName)
             .IsRequired()
             .HasMaxLength(100)
-            .HasColumnName("LastName");
+            .HasColumnName("last_name");
 
         builder.Property(u => u.Gender)
             .HasMaxLength(20)
-            .HasColumnName("Gender");
+            .HasColumnName("gender");
 
         builder.Property(u => u.PasswordHash)
             .IsRequired()
             .HasMaxLength(512)
-            .HasColumnName("Password");
+            .HasColumnName("password");
 
         builder.Property(u => u.DateOfBirth)
             .HasColumnName("dob");
 
         builder.Property(u => u.Street)
             .HasMaxLength(200)
-            .HasColumnName("Street");
+            .HasColumnName("street");
 
         builder.Property(u => u.City)
             .HasMaxLength(100)
-            .HasColumnName("City");
+            .HasColumnName("city");
 
         builder.Property(u => u.State)
             .HasMaxLength(100)
-            .HasColumnName("State");
+            .HasColumnName("state");
 
         builder.Property(u => u.IsAdmin)
             .IsRequired()
+            .HasColumnName("is_admin")
             .HasDefaultValue(false);
 
         builder.Property(u => u.CreatedDate)
             .IsRequired()
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasColumnName("created_date")
+            .HasDefaultValueSql("NOW()");
+
+        builder.Property(u => u.ModifiedDate)
+            .HasColumnName("modified_date");
 
         builder.Property(u => u.IsActive)
             .IsRequired()
+            .HasColumnName("is_active")
             .HasDefaultValue(true);
 
         builder.HasMany(u => u.Bookings)

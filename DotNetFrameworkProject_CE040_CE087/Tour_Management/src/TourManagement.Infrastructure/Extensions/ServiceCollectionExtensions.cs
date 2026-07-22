@@ -22,14 +22,21 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        // Register DbContext
+        // Register DbContext with PostgreSQL provider
         services.AddDbContext<TourManagementDbContext>(options =>
-            options.UseSqlServer(
+        {
+            options.UseNpgsql(
                 configuration.GetConnectionString("DefaultConnection"),
-                sqlOptions => sqlOptions.EnableRetryOnFailure(
-                    maxRetryCount: 3,
-                    maxRetryDelay: TimeSpan.FromSeconds(30),
-                    errorNumbersToAdd: null)));
+                npgsqlOptions =>
+                {
+                    npgsqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 3,
+                        maxRetryDelay: TimeSpan.FromSeconds(30),
+                        errorCodesToAdd: null);
+                    npgsqlOptions.MigrationsHistoryTable("__ef_migrations_history", "public");
+                });
+            options.UseSnakeCaseNamingConvention();
+        });
 
         // Register repositories
         services.AddScoped<ITourRepository, TourRepository>();
