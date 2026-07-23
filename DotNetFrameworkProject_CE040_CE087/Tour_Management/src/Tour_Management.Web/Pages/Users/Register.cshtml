@@ -1,0 +1,85 @@
+@page
+@model Tour_Management.Web.Pages.Users.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Create Account</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="RegisterUser.Email" class="form-label"></label>
+                <input asp-for="RegisterUser.Email" class="form-control" type="email" />
+                <span asp-validation-for="RegisterUser.Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="RegisterUser.FirstName" class="form-label"></label>
+                <input asp-for="RegisterUser.FirstName" class="form-control" />
+                <span asp-validation-for="RegisterUser.FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="RegisterUser.LastName" class="form-label"></label>
+                <input asp-for="RegisterUser.LastName" class="form-control" />
+                <span asp-validation-for="RegisterUser.LastName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="RegisterUser.Gender" class="form-label"></label>
+                <select asp-for="RegisterUser.Gender" class="form-select">
+                    <option value="">-- Select --</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="RegisterUser.Password" class="form-label"></label>
+                <input asp-for="RegisterUser.Password" class="form-control" type="password" />
+                <span asp-validation-for="RegisterUser.Password" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="RegisterUser.ConfirmPassword" class="form-label"></label>
+                <input asp-for="RegisterUser.ConfirmPassword" class="form-control" type="password" />
+                <span asp-validation-for="RegisterUser.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="RegisterUser.Dob" class="form-label"></label>
+                <input asp-for="RegisterUser.Dob" class="form-control" type="date" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="RegisterUser.Street" class="form-label"></label>
+                <input asp-for="RegisterUser.Street" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="RegisterUser.City" class="form-label"></label>
+                <input asp-for="RegisterUser.City" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="RegisterUser.State" class="form-label"></label>
+                <input asp-for="RegisterUser.State" class="form-control" />
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-success">Register</button>
+                <a asp-page="./Login" class="btn btn-secondary">Already have an account?</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

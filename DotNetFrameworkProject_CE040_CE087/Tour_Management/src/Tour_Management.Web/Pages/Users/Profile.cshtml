@@ -1,0 +1,49 @@
+@page
+@model Tour_Management.Web.Pages.Users.ProfileModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<h1>My Profile</h1>
+<hr />
+
+@if (Model.Profile == null)
+{
+    <div class="alert alert-warning">Please <a asp-page="./Login">log in</a> to view your profile.</div>
+}
+else
+{
+    <dl class="row">
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Model.Profile.Email</dd>
+
+        <dt class="col-sm-3">First Name</dt>
+        <dd class="col-sm-9">@Model.Profile.FirstName</dd>
+
+        <dt class="col-sm-3">Last Name</dt>
+        <dd class="col-sm-9">@Model.Profile.LastName</dd>
+
+        <dt class="col-sm-3">Gender</dt>
+        <dd class="col-sm-9">@(Model.Profile.Gender ?? "Not specified")</dd>
+
+        <dt class="col-sm-3">Date of Birth</dt>
+        <dd class="col-sm-9">@(Model.Profile.Dob ?? "Not specified")</dd>
+
+        <dt class="col-sm-3">Street</dt>
+        <dd class="col-sm-9">@(Model.Profile.Street ?? "Not specified")</dd>
+
+        <dt class="col-sm-3">City</dt>
+        <dd class="col-sm-9">@(Model.Profile.City ?? "Not specified")</dd>
+
+        <dt class="col-sm-3">State</dt>
+        <dd class="col-sm-9">@(Model.Profile.State ?? "Not specified")</dd>
+
+        <dt class="col-sm-3">Member Since</dt>
+        <dd class="col-sm-9">@Model.Profile.CreatedDate.ToString("MMM dd, yyyy")</dd>
+    </dl>
+
+    <div class="d-flex gap-2">
+        <a asp-page="/Bookings/Index" class="btn btn-primary">My Bookings</a>
+        <a asp-page="./Logout" class="btn btn-outline-danger">Logout</a>
+    </div>
+}

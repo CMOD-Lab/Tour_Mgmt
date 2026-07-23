@@ -1,0 +1,78 @@
+@page
+@model Tour_Management.Web.Pages.Tours.IndexModel
+@{
+    ViewData["Title"] = "Tours";
+}
+
+<h1>Available Tours</h1>
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Model.Message
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="mb-3">
+    <form method="get" class="d-flex gap-2">
+        <input type="text" name="searchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search tours..." />
+        <button type="submit" class="btn btn-outline-primary">Search</button>
+        @if (!string.IsNullOrEmpty(Model.SearchTerm))
+        {
+            <a asp-page="./Index" class="btn btn-outline-secondary">Clear</a>
+        }
+    </form>
+</div>
+
+@if (HttpContext.Session.GetString("IsAdmin") == "true")
+{
+    <div class="mb-3">
+        <a asp-page="./Create" class="btn btn-success">+ Add New Tour</a>
+    </div>
+}
+
+@if (!Model.Tours.Any())
+{
+    <div class="alert alert-info">No tours found.</div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var tour in Model.Tours)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    @if (!string.IsNullOrEmpty(tour.Pic))
+                    {
+                        <img src="/images/tours/@tour.Pic" class="card-img-top" alt="@tour.TourName" style="height:200px;object-fit:cover;" onerror="this.src='/images/tours/default.jpg'" />
+                    }
+                    else
+                    {
+                        <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height:200px;">
+                            <span class="text-white fs-1">🌍</span>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@tour.TourName</h5>
+                        <p class="card-text">
+                            <strong>Place:</strong> @tour.Place<br />
+                            <strong>Days:</strong> @tour.Days<br />
+                            <strong>Price:</strong> $@tour.Price.ToString("N2")<br />
+                            <strong>Locations:</strong> @tour.Locations
+                        </p>
+                    </div>
+                    <div class="card-footer d-flex gap-2">
+                        <a asp-page="./Details" asp-route-id="@tour.TourId" class="btn btn-info btn-sm">Details</a>
+                        <a asp-page="/Bookings/Create" asp-route-tourId="@tour.TourId" asp-route-tourName="@tour.TourName" asp-route-place="@tour.Place" class="btn btn-warning btn-sm">Book Now</a>
+                        @if (HttpContext.Session.GetString("IsAdmin") == "true")
+                        {
+                            <a asp-page="./Edit" asp-route-id="@tour.TourId" class="btn btn-primary btn-sm">Edit</a>
+                            <a asp-page="./Delete" asp-route-id="@tour.TourId" class="btn btn-danger btn-sm">Delete</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

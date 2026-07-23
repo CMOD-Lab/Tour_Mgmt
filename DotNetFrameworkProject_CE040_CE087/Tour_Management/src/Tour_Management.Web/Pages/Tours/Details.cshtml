@@ -1,0 +1,59 @@
+@page "{id:int}"
+@model Tour_Management.Web.Pages.Tours.DetailsModel
+@{
+    ViewData["Title"] = "Tour Details";
+}
+
+@if (Model.Tour == null)
+{
+    <div class="alert alert-warning">Tour not found.</div>
+    <a asp-page="./Index" class="btn btn-secondary">Back to Tours</a>
+}
+else
+{
+    <h1>@Model.Tour.TourName</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            @if (!string.IsNullOrEmpty(Model.Tour.Pic))
+            {
+                <img src="/images/tours/@Model.Tour.Pic" class="img-fluid rounded" alt="@Model.Tour.TourName" onerror="this.src='/images/tours/default.jpg'" />
+            }
+        </div>
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">Tour Name</dt>
+                <dd class="col-sm-8">@Model.Tour.TourName</dd>
+
+                <dt class="col-sm-4">Place</dt>
+                <dd class="col-sm-8">@Model.Tour.Place</dd>
+
+                <dt class="col-sm-4">Days</dt>
+                <dd class="col-sm-8">@Model.Tour.Days days</dd>
+
+                <dt class="col-sm-4">Price</dt>
+                <dd class="col-sm-8">$@Model.Tour.Price.ToString("N2")</dd>
+
+                <dt class="col-sm-4">Locations</dt>
+                <dd class="col-sm-8">@Model.Tour.Locations</dd>
+
+                <dt class="col-sm-4">Tour Info</dt>
+                <dd class="col-sm-8">@Model.Tour.TourInfo</dd>
+
+                <dt class="col-sm-4">Created</dt>
+                <dd class="col-sm-8">@Model.Tour.CreatedDate.ToString("MMM dd, yyyy")</dd>
+            </dl>
+
+            <div class="d-flex gap-2 mt-3">
+                <a asp-page="/Bookings/Create" asp-route-tourId="@Model.Tour.TourId" asp-route-tourName="@Model.Tour.TourName" asp-route-place="@Model.Tour.Place" class="btn btn-warning">Book This Tour</a>
+                @if (HttpContext.Session.GetString("IsAdmin") == "true")
+                {
+                    <a asp-page="./Edit" asp-route-id="@Model.Tour.TourId" class="btn btn-primary">Edit</a>
+                    <a asp-page="./Delete" asp-route-id="@Model.Tour.TourId" class="btn btn-danger">Delete</a>
+                }
+                <a asp-page="./Index" class="btn btn-secondary">Back to Tours</a>
+            </div>
+        </div>
+    </div>
+}
