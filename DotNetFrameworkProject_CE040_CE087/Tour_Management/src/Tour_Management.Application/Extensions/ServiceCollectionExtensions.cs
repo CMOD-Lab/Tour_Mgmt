@@ -1,0 +1,28 @@
+using Microsoft.Extensions.DependencyInjection;
+using Tour_Management.Application.Interfaces;
+using Tour_Management.Application.Mappings;
+using Tour_Management.Application.Services;
+
+namespace Tour_Management.Application.Extensions;
+
+/// <summary>
+/// Extension methods for registering Application layer services.
+/// </summary>
+public static class ServiceCollectionExtensions
+{
+    /// <summary>
+    /// Registers all Application layer services with the DI container.
+    /// </summary>
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    {
+        // Register AutoMapper
+        services.AddAutoMapper(typeof(MappingProfile).Assembly);
+
+        // Register services
+        services.AddScoped<ITourService, TourService>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IBookingService, BookingService>();
+
+        return services;
+    }
+}

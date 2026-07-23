@@ -1,0 +1,54 @@
+@page
+@model Tour_Management.Web.Pages.Bookings.CreateModel
+@{
+    ViewData["Title"] = "Book Tour";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white text-center">
+                <h3>Book Your Tour</h3>
+            </div>
+            <div class="card-body">
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["Error"]</div>
+                }
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="mb-3">
+                        <label asp-for="Input.TourName" class="form-label"></label>
+                        <input asp-for="Input.TourName" class="form-control" readonly />
+                        <span asp-validation-for="Input.TourName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.Place" class="form-label"></label>
+                        <input asp-for="Input.Place" class="form-control" readonly />
+                        <span asp-validation-for="Input.Place" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.FirstName" class="form-label"></label>
+                        <input asp-for="Input.FirstName" class="form-control" placeholder="Enter your name" />
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Input.Email" class="form-label"></label>
+                        <input asp-for="Input.Email" class="form-control" placeholder="Enter your email" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="Input.TourId" />
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg">Confirm Booking</button>
+                    </div>
+                </form>
+                <hr />
+                <a asp-page="/Tours/Index" class="btn btn-secondary">Back to Tours</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

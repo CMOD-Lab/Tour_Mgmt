@@ -1,0 +1,40 @@
+/* Tour Management - Site CSS */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.jumbotron {
+    padding: 3rem;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+.btn-sm {
+    margin: 1px;
+}
+
+/* Tour card image */
+.card-img-top {
+    border-radius: 10px 10px 0 0;
+}
