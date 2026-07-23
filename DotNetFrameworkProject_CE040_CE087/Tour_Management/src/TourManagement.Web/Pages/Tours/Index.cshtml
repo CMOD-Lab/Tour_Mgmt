@@ -1,0 +1,60 @@
+@page
+@model TourManagement.Web.Pages.Tours.IndexModel
+@{
+    ViewData["Title"] = "Tours";
+}
+
+<h1>Tours</h1>
+
+<partial name="_Notifications" />
+
+<div class="mb-3">
+    <a asp-page="Create" class="btn btn-primary">Add New Tour</a>
+</div>
+
+<form method="get" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="searchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search tours..." />
+        <button type="submit" class="btn btn-outline-secondary">Search</button>
+        @if (!string.IsNullOrEmpty(Model.SearchTerm))
+        {
+            <a asp-page="Index" class="btn btn-outline-danger">Clear</a>
+        }
+    </div>
+</form>
+
+@if (!Model.Tours.Any())
+{
+    <div class="alert alert-info">No tours found.</div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var tour in Model.Tours)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    @if (!string.IsNullOrEmpty(tour.Pic))
+                    {
+                        <img src="~/Tour_pics/@tour.Pic" class="card-img-top" alt="@tour.TourName" style="height:200px;object-fit:cover;" onerror="this.style.display='none'" />
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@tour.TourName</h5>
+                        <p class="card-text">
+                            <strong>Place:</strong> @tour.Place<br />
+                            <strong>Days:</strong> @tour.Days<br />
+                            <strong>Price:</strong> $@tour.Price.ToString("N2")<br />
+                            <strong>Locations:</strong> @tour.Locations
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-page="Details" asp-route-id="@tour.Id" class="btn btn-sm btn-info">Details</a>
+                        <a asp-page="Edit" asp-route-id="@tour.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-page="Delete" asp-route-id="@tour.Id" class="btn btn-sm btn-danger">Delete</a>
+                        <a asp-page="/Bookings/Create" asp-route-tourId="@tour.Id" asp-route-tourName="@tour.TourName" asp-route-place="@tour.Place" class="btn btn-sm btn-success">Book</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
