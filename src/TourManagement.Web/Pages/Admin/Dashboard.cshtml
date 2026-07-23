@@ -1,0 +1,70 @@
+@page
+@model TourManagement.Web.Pages.Admin.DashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2>Admin Dashboard</h2>
+
+<div class="row mt-4">
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-primary shadow">
+            <div class="card-body text-center">
+                <h3>@Model.TotalTours</h3>
+                <p class="mb-0">Total Tours</p>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-page="/Tours/Index" class="text-white">Manage Tours →</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-success shadow">
+            <div class="card-body text-center">
+                <h3>@Model.TotalBookings</h3>
+                <p class="mb-0">Total Bookings</p>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-page="/Bookings/Index" class="text-white">View Bookings →</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-info shadow">
+            <div class="card-body text-center">
+                <h3>@Model.TotalUsers</h3>
+                <p class="mb-0">Registered Users</p>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-page="/Users/Index" class="text-white">Manage Users →</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-warning shadow">
+            <div class="card-body text-center">
+                <h3>+</h3>
+                <p class="mb-0">Add New Tour</p>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-page="/Tours/Create" class="text-white">Add Tour →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">Quick Actions</div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-page="/Tours/Create" class="btn btn-success">Add New Tour</a>
+                    <a asp-page="/Tours/Index" class="btn btn-primary">Manage Tours</a>
+                    <a asp-page="/Bookings/Index" class="btn btn-info">View All Bookings</a>
+                    <a asp-page="/Users/Index" class="btn btn-secondary">Manage Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

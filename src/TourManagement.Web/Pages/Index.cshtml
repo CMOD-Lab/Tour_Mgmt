@@ -1,0 +1,53 @@
+@page
+@model TourManagement.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="jumbotron text-center py-5 bg-primary text-white rounded mb-4">
+    <h1 class="display-4">Welcome to Tour Management</h1>
+    <p class="lead">Discover amazing tours and book your dream vacation today!</p>
+    <hr class="my-4" />
+    <a class="btn btn-light btn-lg me-2" asp-page="/Tours/Index">Browse Tours</a>
+    @if (HttpContext.Session.GetString("UserEmail") == null)
+    {
+        <a class="btn btn-outline-light btn-lg" asp-page="/Users/Register">Register Now</a>
+    }
+    else
+    {
+        <a class="btn btn-outline-light btn-lg" asp-page="/Bookings/Create">Book a Tour</a>
+    }
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h2>🗺️</h2>
+                <h5 class="card-title">Explore Destinations</h5>
+                <p class="card-text">Browse our wide selection of tour packages to amazing destinations.</p>
+                <a asp-page="/Tours/Index" class="btn btn-primary">View Tours</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h2>📋</h2>
+                <h5 class="card-title">Easy Booking</h5>
+                <p class="card-text">Book your tour in just a few simple steps and get instant confirmation.</p>
+                <a asp-page="/Users/Login" class="btn btn-primary">Book Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h2>👤</h2>
+                <h5 class="card-title">Manage Your Trips</h5>
+                <p class="card-text">View and manage all your bookings from your personal profile.</p>
+                <a asp-page="/Users/Profile" class="btn btn-primary">My Profile</a>
+            </div>
+        </div>
+    </div>
+</div>

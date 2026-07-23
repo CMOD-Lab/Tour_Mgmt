@@ -1,29 +1,93 @@
-# Tour_Management_Project
- simple asp.net application for booking of tours.
- 
-# Admin
-* Add Tour
-* Manage Tour 
-* See Bookings
-<img width="752" alt="image" src="https://user-images.githubusercontent.com/81226571/196478877-2a66ec3b-1a71-48ce-ab20-6013890ae19d.png">
-<img width="760" alt="image" src="https://user-images.githubusercontent.com/81226571/196479030-a0cbc14c-6085-4d7c-8de5-86414aa8be7f.png">
+# Tour Management System - .NET 8
 
-# User
-- Manage Profile
-- Book Tour
-- See his booking
-<img width="745" alt="image" src="https://user-images.githubusercontent.com/81226571/196478761-6a7d261a-1769-4c56-9052-b3e4a77722e5.png">
+A modern Tour Management web application built with ASP.NET Core 8 Razor Pages, following Clean Architecture principles.
 
-## How to run?
-- Fork Project 
-- clone repository( git clone https://github.com/jaygajera17/Tour_Management_Asp.Net)
-- open app_data folder
-- right click on database file (.mdf) click modify connection.
-- you can also config your own database by step mention in [database.txt](https://github.com/jaygajera17/Tour_Management_Asp.Net/blob/main/Database.txt) file.
+## Architecture
 
-## Important Links
-- 𝗬𝗼𝘂𝘁𝘂𝗯𝗲 𝗽𝗿𝗼𝗷𝗲𝗰𝘁 𝘃𝗶𝗱𝗲𝗼 𝗪𝗼𝗿𝗸𝗶𝗻𝗴 𝗗𝗲𝗺𝗼  ::---  [  click here  ](https://youtu.be/r-UfxsVzndk) [![youtube][youtube-shield]][youtube-url]
+This solution follows **Clean Architecture** with four main layers:
 
+```
+TourManagement/
+├── src/
+│   ├── TourManagement.Domain/          # Domain entities, interfaces, exceptions
+│   ├── TourManagement.Application/     # Business logic, services, DTOs, validators
+│   ├── TourManagement.Infrastructure/  # EF Core, repositories, data access
+│   └── TourManagement.Web/             # Razor Pages UI, ViewModels, static files
+├── tests/
+│   ├── TourManagement.UnitTests/       # Unit tests for services
+│   └── TourManagement.IntegrationTests/ # Integration tests for repositories
+└── docs/                               # Documentation
+```
 
-[youtube-shield]:https://img.shields.io/youtube/views/r-UfxsVzndk?style=social
-[youtube-url]:  https://youtu.be/r-UfxsVzndk
+## Features
+
+- **User Management**: Registration, login, profile management
+- **Tour Management**: Full CRUD for tour packages with image upload
+- **Booking System**: Book tours, view/cancel bookings
+- **Admin Panel**: Dashboard, manage tours, users, and bookings
+- **Search**: Search tours by name or place
+
+## Technology Stack
+
+- **Framework**: ASP.NET Core 8 Razor Pages
+- **ORM**: Entity Framework Core 8.0
+- **Database**: SQL Server (LocalDB for development)
+- **Logging**: Serilog
+- **Mapping**: AutoMapper 12
+- **Validation**: FluentValidation 11
+- **Testing**: xUnit, Moq, FluentAssertions
+
+## Setup Instructions
+
+### Prerequisites
+- .NET 8 SDK
+- SQL Server or SQL Server LocalDB
+
+### Configuration
+1. Update the connection string in `src/TourManagement.Web/appsettings.json`:
+   ```json
+   "ConnectionStrings": {
+     "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=tourdb;Trusted_Connection=True;"
+   }
+   ```
+
+2. Run database migrations:
+   ```bash
+   cd src/TourManagement.Web
+   dotnet ef database update
+   ```
+
+### Running the Application
+```bash
+cd src/TourManagement.Web
+dotnet run
+```
+
+### Running Tests
+```bash
+dotnet test
+```
+
+## Migration Notes
+
+This application was migrated from ASP.NET Web Forms 4.7.2 to .NET 8.
+
+### Key Changes
+- Replaced `.aspx` pages with Razor Pages (`.cshtml`)
+- Replaced ADO.NET with Entity Framework Core 8
+- Replaced `Web.config` with `appsettings.json`
+- Replaced `System.Web` with ASP.NET Core equivalents
+- Replaced `Response.Redirect` with `RedirectToPage()`
+- Replaced `Server.MapPath` with `IWebHostEnvironment`
+- Replaced `Session` with ASP.NET Core session middleware
+- Replaced `ConfigurationManager` with `IConfiguration`
+- Implemented Clean Architecture (Domain/Application/Infrastructure/Web)
+- Added dependency injection throughout
+- Added proper async/await patterns
+- Added comprehensive error handling and logging
+
+## Default Admin Credentials
+- Email: `admin@gmail.com`
+- Password: `admin`
+
+> **Note**: Change these credentials in `appsettings.json` before deploying to production.
