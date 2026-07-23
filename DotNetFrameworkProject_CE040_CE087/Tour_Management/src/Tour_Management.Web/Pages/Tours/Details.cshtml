@@ -1,0 +1,52 @@
+@page
+@model Tour_Management.Web.Pages.Tours.DetailsModel
+@{
+    ViewData["Title"] = "Tour Details";
+}
+
+@if (Model.Tour == null)
+{
+    <div class="alert alert-warning">Tour not found.</div>
+    <a asp-page="./Index" class="btn btn-secondary">Back to Tours</a>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-8">
+            <h1>@Model.Tour.TourName</h1>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">Place</dt>
+                <dd class="col-sm-9">@Model.Tour.Place</dd>
+
+                <dt class="col-sm-3">Duration</dt>
+                <dd class="col-sm-9">@Model.Tour.Days days</dd>
+
+                <dt class="col-sm-3">Price</dt>
+                <dd class="col-sm-9">₹@Model.Tour.Price.ToString("N2")</dd>
+
+                <dt class="col-sm-3">Locations</dt>
+                <dd class="col-sm-9">@Model.Tour.Locations</dd>
+
+                <dt class="col-sm-3">Tour Info</dt>
+                <dd class="col-sm-9">@Model.Tour.TourInfo</dd>
+            </dl>
+
+            <div class="mt-3 d-flex gap-2">
+                <a asp-page="/Bookings/Create" asp-route-tourId="@Model.Tour.TourId" asp-route-tourName="@Model.Tour.TourName" asp-route-place="@Model.Tour.Place" class="btn btn-success">Book This Tour</a>
+                <a asp-page="./Index" class="btn btn-secondary">Back to Tours</a>
+                @if (Model.IsAdmin)
+                {
+                    <a asp-page="./Edit" asp-route-id="@Model.Tour.TourId" class="btn btn-warning">Edit</a>
+                    <a asp-page="./Delete" asp-route-id="@Model.Tour.TourId" class="btn btn-danger">Delete</a>
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+            @if (!string.IsNullOrEmpty(Model.Tour.Pic))
+            {
+                <img src="/tour-pics/@Model.Tour.Pic" class="img-fluid rounded shadow" alt="@Model.Tour.TourName" onerror="this.src='/images/default-tour.jpg'" />
+            }
+        </div>
+    </div>
+}

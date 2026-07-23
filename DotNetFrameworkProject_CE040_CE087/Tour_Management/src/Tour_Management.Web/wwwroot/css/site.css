@@ -1,0 +1,56 @@
+/* Tour Management - Site CSS */
+
+body {
+    padding-top: 10px;
+    padding-bottom: 40px;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+footer {
+    padding: 20px 0;
+    margin-top: 40px;
+    background-color: #343a40;
+    color: #adb5bd;
+}
+
+footer .container {
+    text-align: center;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.tour-image {
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn {
+    border-radius: 4px;
+}
+
+.table th {
+    font-weight: 600;
+}
+
+.alert {
+    border-radius: 6px;
+}
+
+/* Hero section */
+.hero-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 80px 20px;
+    margin-bottom: 30px;
+}

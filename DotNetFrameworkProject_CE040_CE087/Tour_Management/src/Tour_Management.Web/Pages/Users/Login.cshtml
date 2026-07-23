@@ -1,0 +1,52 @@
+@page
+@model Tour_Management.Web.Pages.Users.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <h1>Login</h1>
+        <hr />
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
+
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Login.Email" class="form-label"></label>
+                <input asp-for="Login.Email" class="form-control" autocomplete="email" />
+                <span asp-validation-for="Login.Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Login.Password" class="form-label"></label>
+                <input asp-for="Login.Password" class="form-control" autocomplete="current-password" />
+                <span asp-validation-for="Login.Password" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input asp-for="Login.RememberMe" class="form-check-input" />
+                <label asp-for="Login.RememberMe" class="form-check-label">Remember me</label>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a asp-page="./Register" class="btn btn-outline-secondary">Register</a>
+            </div>
+        </form>
+
+        <hr />
+        <p class="text-muted">
+            <small>Admin login: admin@gmail.com / admin</small>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

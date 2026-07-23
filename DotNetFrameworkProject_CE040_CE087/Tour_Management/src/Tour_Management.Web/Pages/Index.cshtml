@@ -1,0 +1,45 @@
+@page
+@model Tour_Management.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home - Tour Management";
+}
+
+<div class="text-center" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 80px 20px; margin: -20px -15px 30px;">
+    <h1 class="display-4 fw-bold">Welcome to Tour Management</h1>
+    <p class="lead">Discover amazing tours and book your dream vacation today!</p>
+    <a asp-page="/Tours/Index" class="btn btn-warning btn-lg mt-3">
+        Explore Tours
+    </a>
+</div>
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow">
+                <div class="card-body text-center">
+                    <h3 class="card-title text-primary">🗺️ Browse Tours</h3>
+                    <p class="card-text">Explore our wide selection of tours to amazing destinations around the world.</p>
+                    <a asp-page="/Tours/Index" class="btn btn-primary">View All Tours</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow">
+                <div class="card-body text-center">
+                    <h3 class="card-title text-success">📋 My Bookings</h3>
+                    <p class="card-text">View and manage your tour bookings in one convenient place.</p>
+                    <a asp-page="/Bookings/MyBookings" class="btn btn-success">My Bookings</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow">
+                <div class="card-body text-center">
+                    <h3 class="card-title text-warning">👤 My Profile</h3>
+                    <p class="card-text">Manage your account information and personal details.</p>
+                    <a asp-page="/Users/Profile" class="btn btn-warning">View Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

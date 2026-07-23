@@ -1,0 +1,93 @@
+@page
+@model Tour_Management.Web.Pages.Users.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <h1>Register</h1>
+        <hr />
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+        }
+
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Register.FirstName" class="form-label"></label>
+                    <input asp-for="Register.FirstName" class="form-control" />
+                    <span asp-validation-for="Register.FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Register.LastName" class="form-label"></label>
+                    <input asp-for="Register.LastName" class="form-control" />
+                    <span asp-validation-for="Register.LastName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Register.Email" class="form-label"></label>
+                <input asp-for="Register.Email" class="form-control" autocomplete="email" />
+                <span asp-validation-for="Register.Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Register.Gender" class="form-label"></label>
+                <select asp-for="Register.Gender" class="form-select">
+                    <option value="">-- Select Gender --</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Register.Password" class="form-label"></label>
+                    <input asp-for="Register.Password" class="form-control" autocomplete="new-password" />
+                    <span asp-validation-for="Register.Password" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Register.ConfirmPassword" class="form-label"></label>
+                    <input asp-for="Register.ConfirmPassword" class="form-control" autocomplete="new-password" />
+                    <span asp-validation-for="Register.ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Register.DateOfBirth" class="form-label"></label>
+                <input asp-for="Register.DateOfBirth" class="form-control" type="date" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Register.Street" class="form-label"></label>
+                <input asp-for="Register.Street" class="form-control" />
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Register.City" class="form-label"></label>
+                    <input asp-for="Register.City" class="form-control" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Register.State" class="form-label"></label>
+                    <input asp-for="Register.State" class="form-control" />
+                </div>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Register</button>
+                <a asp-page="./Login" class="btn btn-outline-secondary">Already have an account?</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

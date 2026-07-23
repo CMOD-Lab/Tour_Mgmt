@@ -1,0 +1,63 @@
+@page
+@model Tour_Management.Web.Pages.Users.ProfileModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+@if (Model.User == null)
+{
+    <div class="alert alert-warning">Please login to view your profile.</div>
+    <a asp-page="./Login" class="btn btn-primary">Login</a>
+}
+else
+{
+    <h1>My Profile</h1>
+    <hr />
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">Full Name</dt>
+                <dd class="col-sm-8">@Model.User.FullName</dd>
+
+                <dt class="col-sm-4">Email</dt>
+                <dd class="col-sm-8">@Model.User.Email</dd>
+
+                <dt class="col-sm-4">Gender</dt>
+                <dd class="col-sm-8">@(Model.User.Gender ?? "Not specified")</dd>
+
+                <dt class="col-sm-4">Date of Birth</dt>
+                <dd class="col-sm-8">@(Model.User.DateOfBirth?.ToString("dd MMM yyyy") ?? "Not specified")</dd>
+
+                <dt class="col-sm-4">Address</dt>
+                <dd class="col-sm-8">
+                    @if (!string.IsNullOrEmpty(Model.User.Street))
+                    {
+                        @Model.User.Street<br />
+                    }
+                    @if (!string.IsNullOrEmpty(Model.User.City))
+                    {
+                        @Model.User.City
+                        @if (!string.IsNullOrEmpty(Model.User.State))
+                        {
+                            <text>, @Model.User.State</text>
+                        }
+                    }
+                </dd>
+
+                <dt class="col-sm-4">Member Since</dt>
+                <dd class="col-sm-8">@Model.User.CreatedDate.ToString("dd MMM yyyy")</dd>
+            </dl>
+
+            <div class="d-flex gap-2 mt-3">
+                <a asp-page="./Edit" asp-route-id="@Model.User.UserId" class="btn btn-warning">Edit Profile</a>
+                <a asp-page="/Bookings/MyBookings" class="btn btn-info">My Bookings</a>
+            </div>
+        </div>
+    </div>
+}
