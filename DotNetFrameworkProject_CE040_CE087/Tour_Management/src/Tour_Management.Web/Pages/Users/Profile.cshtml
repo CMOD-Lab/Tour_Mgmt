@@ -1,0 +1,52 @@
+@page
+@model Tour_Management.Web.Pages.Users.ProfileModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+@if (Model.Profile == null)
+{
+    <div class="alert alert-warning">Please login to view your profile.</div>
+    <a asp-page="./Login" class="btn btn-primary">Login</a>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">👤 @Model.Profile.FullName</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><strong>Email</strong></td>
+                            <td>@Model.Profile.Email</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gender</strong></td>
+                            <td>@(Model.Profile.Gender ?? "Not specified")</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date of Birth</strong></td>
+                            <td>@(Model.Profile.Dob?.ToString("dd MMM yyyy") ?? "Not specified")</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Address</strong></td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(Model.Profile.Street))
+                                {
+                                    @Model.Profile.Street<br />
+                                }
+                                @(Model.Profile.City ?? "") @(Model.Profile.State ?? "")
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <a asp-page="/Bookings/MyBookings" class="btn btn-success">View My Bookings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

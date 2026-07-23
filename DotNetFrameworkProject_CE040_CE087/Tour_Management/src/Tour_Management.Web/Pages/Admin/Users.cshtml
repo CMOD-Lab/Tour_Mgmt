@@ -1,0 +1,52 @@
+@page
+@model Tour_Management.Web.Pages.Admin.UsersModel
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+@if (HttpContext.Session.GetString("IsAdmin") != "true")
+{
+    <div class="alert alert-danger">Access denied.</div>
+}
+else
+{
+    <h1>👥 Manage Users</h1>
+    <hr />
+
+    @if (!Model.Users.Any())
+    {
+        <div class="alert alert-info">No users registered yet.</div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Registered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td>@user.UserId</td>
+                            <td>@user.FullName</td>
+                            <td>@user.Email</td>
+                            <td>@(user.City ?? "-")</td>
+                            <td>@(user.State ?? "-")</td>
+                            <td>@user.CreatedDate.ToString("dd MMM yyyy")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <a asp-page="./Dashboard" class="btn btn-secondary mt-3">Back to Dashboard</a>
+}
