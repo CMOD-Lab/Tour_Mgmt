@@ -1,0 +1,46 @@
+@page "{id:int}"
+@model Tour_Management.Web.Pages.Bookings.DetailsModel
+@{
+    ViewData["Title"] = "Booking Details";
+}
+
+@if (Model.Booking == null)
+{
+    <div class="alert alert-warning">Booking not found. <a asp-page="MyBookings">Back to My Bookings</a></div>
+}
+else
+{
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0"><i class="bi bi-calendar-check me-2"></i>Booking Details</h4>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Booking ID</dt>
+                        <dd class="col-sm-8">#@Model.Booking.BookingId</dd>
+                        <dt class="col-sm-4">Tour Name</dt>
+                        <dd class="col-sm-8">@Model.Booking.TourName</dd>
+                        <dt class="col-sm-4">Destination</dt>
+                        <dd class="col-sm-8">@Model.Booking.Place</dd>
+                        <dt class="col-sm-4">Customer Email</dt>
+                        <dd class="col-sm-8">@Model.Booking.Email</dd>
+                        <dt class="col-sm-4">Customer Name</dt>
+                        <dd class="col-sm-8">@Model.Booking.FirstName</dd>
+                        <dt class="col-sm-4">Booking Date</dt>
+                        <dd class="col-sm-8">@Model.Booking.CreatedDate.ToString("dd MMM yyyy HH:mm")</dd>
+                    </dl>
+                </div>
+                <div class="card-footer">
+                    <a asp-page="MyBookings" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-1"></i>Back to My Bookings
+                    </a>
+                    <a asp-page="Delete" asp-route-id="@Model.Booking.BookingId" class="btn btn-danger ms-2">
+                        <i class="bi bi-x-circle me-1"></i>Cancel Booking
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,52 @@
+/* Tour Management - Site CSS */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.jumbotron {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* Tour card image */
+.card-img-top {
+    object-fit: cover;
+}
+
+/* Form validation */
+.field-validation-error {
+    color: #dc3545;
+    font-size: 0.875em;
+}
+
+.input-validation-error {
+    border-color: #dc3545;
+}
+
+/* Alert auto-dismiss */
+.alert-dismissible {
+    padding-right: 3rem;
+}
