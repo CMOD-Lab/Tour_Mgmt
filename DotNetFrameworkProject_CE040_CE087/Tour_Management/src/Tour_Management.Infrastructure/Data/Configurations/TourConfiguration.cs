@@ -12,40 +12,40 @@ public class TourConfiguration : IEntityTypeConfiguration<Tour>
     /// <inheritdoc/>
     public void Configure(EntityTypeBuilder<Tour> builder)
     {
-        builder.ToTable("Tour");
+        builder.ToTable("tour");
 
         builder.HasKey(t => t.TourId);
 
         builder.Property(t => t.TourId)
-            .HasColumnName("TOUR_ID")
+            .HasColumnName("tour_id")
             .ValueGeneratedOnAdd();
 
         builder.Property(t => t.TourName)
-            .HasColumnName("TOUR_NAME")
+            .HasColumnName("tour_name")
             .IsRequired()
             .HasMaxLength(200);
 
         builder.Property(t => t.Place)
-            .HasColumnName("PLACE")
+            .HasColumnName("place")
             .IsRequired()
             .HasMaxLength(200);
 
         builder.Property(t => t.Days)
-            .HasColumnName("DAYS")
+            .HasColumnName("days")
             .IsRequired();
 
         builder.Property(t => t.Price)
-            .HasColumnName("PRICE")
+            .HasColumnName("price")
             .IsRequired()
-            .HasColumnType("decimal(18,2)");
+            .HasColumnType("numeric(18,2)");
 
         builder.Property(t => t.Locations)
-            .HasColumnName("LOCATIONS")
+            .HasColumnName("locations")
             .IsRequired()
             .HasMaxLength(500);
 
         builder.Property(t => t.TourInfo)
-            .HasColumnName("TOUR_INFO")
+            .HasColumnName("tour_info")
             .IsRequired()
             .HasMaxLength(1000);
 
@@ -54,7 +54,7 @@ public class TourConfiguration : IEntityTypeConfiguration<Tour>
             .HasMaxLength(500);
 
         builder.Property(t => t.CreatedDate)
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasDefaultValueSql("NOW()");
 
         builder.Property(t => t.IsActive)
             .HasDefaultValue(true);
