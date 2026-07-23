@@ -6,45 +6,46 @@ namespace Tour_Management.Infrastructure.Data.Configurations;
 
 /// <summary>
 /// EF Core configuration for the Tour entity.
+/// Configured for PostgreSQL compatibility with snake_case naming.
 /// </summary>
 public class TourConfiguration : IEntityTypeConfiguration<Tour>
 {
     public void Configure(EntityTypeBuilder<Tour> builder)
     {
-        builder.ToTable("Tour");
+        builder.ToTable("tour");
 
         builder.HasKey(t => t.TourId);
 
         builder.Property(t => t.TourId)
-            .HasColumnName("TOUR_ID")
+            .HasColumnName("tour_id")
             .ValueGeneratedOnAdd();
 
         builder.Property(t => t.TourName)
-            .HasColumnName("TOUR_NAME")
+            .HasColumnName("tour_name")
             .IsRequired()
             .HasMaxLength(20);
 
         builder.Property(t => t.Place)
-            .HasColumnName("PLACE")
+            .HasColumnName("place")
             .IsRequired()
             .HasMaxLength(20);
 
         builder.Property(t => t.Days)
-            .HasColumnName("DAYS")
+            .HasColumnName("days")
             .IsRequired();
 
         builder.Property(t => t.Price)
-            .HasColumnName("PRICE")
+            .HasColumnName("price")
             .IsRequired()
-            .HasColumnType("decimal(10,2)");
+            .HasColumnType("numeric(10,2)");
 
         builder.Property(t => t.Locations)
-            .HasColumnName("LOCATIONS")
+            .HasColumnName("locations")
             .IsRequired()
             .HasMaxLength(100);
 
         builder.Property(t => t.TourInfo)
-            .HasColumnName("TOUR_INFO")
+            .HasColumnName("tour_info")
             .IsRequired()
             .HasMaxLength(200);
 
@@ -53,7 +54,7 @@ public class TourConfiguration : IEntityTypeConfiguration<Tour>
             .HasMaxLength(200);
 
         builder.Property(t => t.CreatedDate)
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasDefaultValueSql("now()");
 
         builder.Property(t => t.IsActive)
             .HasDefaultValue(true);
