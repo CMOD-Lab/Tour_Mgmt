@@ -1,0 +1,52 @@
+@page
+@model TourManagement.Web.Pages.Admin.Bookings.IndexModel
+@{
+    ViewData["Title"] = "All Bookings";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>📋 All Bookings</h2>
+    <a asp-page="/Admin/Dashboard" class="btn btn-outline-secondary">Back to Dashboard</a>
+</div>
+
+@if (Model.Bookings.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Tour Name</th>
+                    <th>Place</th>
+                    <th>User Email</th>
+                    <th>First Name</th>
+                    <th>Booking Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var booking in Model.Bookings)
+                {
+                    <tr>
+                        <td>@booking.BookingId</td>
+                        <td>@booking.TourName</td>
+                        <td>@booking.Place</td>
+                        <td>@booking.Email</td>
+                        <td>@booking.FirstName</td>
+                        <td>@booking.BookingDate.ToString("dd MMM yyyy")</td>
+                        <td>
+                            <form method="post" asp-page-handler="Delete" asp-route-id="@booking.BookingId" class="d-inline"
+                                  onsubmit="return confirm('Are you sure you want to delete this booking?');">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">No bookings found.</div>
+}

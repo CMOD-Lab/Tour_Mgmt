@@ -1,0 +1,59 @@
+@page
+@model TourManagement.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- Hero Section -->
+<div class="jumbotron bg-dark text-white p-5 rounded mb-4">
+    <h1 class="display-4">🌍 Welcome to Tour Management</h1>
+    <p class="lead">Discover amazing tours and book your dream vacation today!</p>
+    <hr class="my-4" />
+    <p>Browse our collection of carefully curated tours to destinations around the world.</p>
+    <a class="btn btn-primary btn-lg" asp-page="/Tours/Index">Explore Tours</a>
+    @if (HttpContext.Session.GetString("UserEmail") == null)
+    {
+        <a class="btn btn-outline-light btn-lg ms-2" asp-page="/Account/Register">Register Now</a>
+    }
+</div>
+
+<!-- Featured Tours -->
+<h2 class="mb-4">Featured Tours</h2>
+@if (Model.FeaturedTours.Any())
+{
+    <div class="row">
+        @foreach (var tour in Model.FeaturedTours)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    @if (!string.IsNullOrEmpty(tour.Pic))
+                    {
+                        <img src="~/images/tours/@tour.Pic" class="card-img-top" alt="@tour.TourName" style="height:200px;object-fit:cover;" onerror="this.src='/images/default-tour.jpg'" />
+                    }
+                    else
+                    {
+                        <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height:200px;">
+                            <span class="text-white fs-1">🏖️</span>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@tour.TourName</h5>
+                        <p class="card-text text-muted">📍 @tour.Place</p>
+                        <p class="card-text">@tour.TourInfo</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-info">@tour.Days Days</span>
+                            <strong class="text-success">₹@tour.Price.ToString("N0")</strong>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-page="/Tours/Details" asp-route-id="@tour.TourId" class="btn btn-primary btn-sm w-100">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info">No tours available at the moment. Please check back later.</div>
+}

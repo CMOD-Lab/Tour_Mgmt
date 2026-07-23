@@ -1,0 +1,78 @@
+@page "{id:int}"
+@model TourManagement.Web.Pages.Tours.DetailsModel
+@{
+    ViewData["Title"] = Model.Tour?.TourName ?? "Tour Details";
+}
+
+@if (Model.Tour != null)
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-page="/Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-page="/Tours/Index">Tours</a></li>
+            <li class="breadcrumb-item active">@Model.Tour.TourName</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-6">
+            @if (!string.IsNullOrEmpty(Model.Tour.Pic))
+            {
+                <img src="~/images/tours/@Model.Tour.Pic" class="img-fluid rounded shadow" alt="@Model.Tour.TourName" onerror="this.src='/images/default-tour.jpg'" />
+            }
+            else
+            {
+                <div class="bg-secondary rounded d-flex align-items-center justify-content-center" style="height:350px;">
+                    <span class="text-white" style="font-size:5rem;">🏖️</span>
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            <h2>@Model.Tour.TourName</h2>
+            <p class="text-muted fs-5">📍 @Model.Tour.Place</p>
+
+            <div class="row mb-3">
+                <div class="col-6">
+                    <div class="card text-center bg-light">
+                        <div class="card-body py-2">
+                            <h5 class="card-title mb-0">@Model.Tour.Days</h5>
+                            <small class="text-muted">Days</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card text-center bg-success text-white">
+                        <div class="card-body py-2">
+                            <h5 class="card-title mb-0">₹@Model.Tour.Price.ToString("N0")</h5>
+                            <small>Per Person</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h5>About This Tour</h5>
+            <p>@Model.Tour.TourInfo</p>
+
+            <h5>Locations Covered</h5>
+            <p class="text-muted">🗺️ @Model.Tour.Locations</p>
+
+            <div class="mt-4">
+                @if (HttpContext.Session.GetString("UserEmail") != null)
+                {
+                    <a asp-page="/Bookings/Create" asp-route-tourId="@Model.Tour.TourId" class="btn btn-success btn-lg">
+                        ✈️ Book This Tour
+                    </a>
+                }
+                else
+                {
+                    <a asp-page="/Account/Login" class="btn btn-primary btn-lg">Login to Book</a>
+                }
+                <a asp-page="/Tours/Index" class="btn btn-outline-secondary btn-lg ms-2">Back to Tours</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">Tour not found. <a asp-page="/Tours/Index">Back to tours</a>.</div>
+}
