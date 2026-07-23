@@ -1,0 +1,46 @@
+@page
+@model TourManagement.Web.Pages.User.ProfileModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">My Profile</h4>
+                <a asp-page="/User/Edit" class="btn btn-light btn-sm">Edit Profile</a>
+            </div>
+            <div class="card-body">
+                @if (Model.UserProfile != null)
+                {
+                    <dl class="row">
+                        <dt class="col-sm-3">Full Name</dt>
+                        <dd class="col-sm-9">@Model.UserProfile.FullName</dd>
+
+                        <dt class="col-sm-3">Email</dt>
+                        <dd class="col-sm-9">@Model.UserProfile.Email</dd>
+
+                        <dt class="col-sm-3">Gender</dt>
+                        <dd class="col-sm-9">@Model.UserProfile.Gender</dd>
+
+                        <dt class="col-sm-3">Date of Birth</dt>
+                        <dd class="col-sm-9">@Model.UserProfile.Dob.ToString("MMMM dd, yyyy")</dd>
+
+                        <dt class="col-sm-3">Address</dt>
+                        <dd class="col-sm-9">@Model.UserProfile.Street, @Model.UserProfile.City, @Model.UserProfile.State</dd>
+                    </dl>
+                }
+                else
+                {
+                    <div class="alert alert-warning">Profile not found.</div>
+                }
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a asp-page="/Tour/Index" class="btn btn-primary">Browse Tours</a>
+            <a asp-page="/Booking/MyBookings" class="btn btn-secondary ms-2">My Bookings</a>
+        </div>
+    </div>
+</div>
