@@ -1,0 +1,81 @@
+@page
+@model TourManagement.Web.Pages.Bookings.IndexModel
+@{
+    ViewData["Title"] = "All Bookings";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold"><i class="bi bi-calendar-check me-2 text-primary"></i>All Bookings</h1>
+        <a asp-page="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-2"></i>New Booking
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle me-2"></i>@TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (!Model.Bookings.Any())
+    {
+        <div class="text-center py-5">
+            <i class="bi bi-calendar-x text-muted" style="font-size: 4rem;"></i>
+            <h4 class="text-muted mt-3">No bookings found</h4>
+            <a asp-page="Create" class="btn btn-primary mt-2">
+                <i class="bi bi-plus-circle me-2"></i>Create First Booking
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Tour Name</th>
+                        <th>Place</th>
+                        <th>Customer Name</th>
+                        <th>Email</th>
+                        <th>Booking Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var booking in Model.Bookings)
+                    {
+                        <tr>
+                            <td>@booking.Id</td>
+                            <td>@booking.TourName</td>
+                            <td>@booking.Place</td>
+                            <td>@booking.FirstName</td>
+                            <td>@booking.Email</td>
+                            <td>@booking.BookingDate.ToString("dd MMM yyyy")</td>
+                            <td>
+                                <div class="d-flex gap-1">
+                                    <a asp-page="Details" asp-route-id="@booking.Id"
+                                       class="btn btn-outline-primary btn-sm" title="View">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a asp-page="Edit" asp-route-id="@booking.Id"
+                                       class="btn btn-outline-warning btn-sm" title="Edit">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a asp-page="Delete" asp-route-id="@booking.Id"
+                                       class="btn btn-outline-danger btn-sm" title="Delete">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="text-muted small">Total: @Model.Bookings.Count() booking(s)</div>
+    }
+</div>

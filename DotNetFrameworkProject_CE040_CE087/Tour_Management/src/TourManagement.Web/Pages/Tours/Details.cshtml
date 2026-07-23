@@ -1,0 +1,102 @@
+@page "{id:int}"
+@model TourManagement.Web.Pages.Tours.DetailsModel
+@{
+    ViewData["Title"] = Model.Tour?.TourName ?? "Tour Details";
+}
+
+<div class="container mt-4">
+    @if (Model.Tour == null)
+    {
+        <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-2"></i>Tour not found.
+            <a asp-page="Index" class="alert-link">Back to Tours</a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0 mb-4">
+                    @if (!string.IsNullOrEmpty(Model.Tour.Pic))
+                    {
+                        <img src="/images/tours/@Model.Tour.Pic" class="card-img-top" alt="@Model.Tour.TourName"
+                             style="max-height: 400px; object-fit: cover;"
+                             onerror="this.src='/images/default-tour.jpg'">
+                    }
+                    <div class="card-body p-4">
+                        <h2 class="card-title fw-bold mb-3">@Model.Tour.TourName</h2>
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-geo-alt-fill text-danger me-2 fs-5"></i>
+                                    <div>
+                                        <small class="text-muted d-block">Destination</small>
+                                        <strong>@Model.Tour.Place</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-calendar3 text-primary me-2 fs-5"></i>
+                                    <div>
+                                        <small class="text-muted d-block">Duration</small>
+                                        <strong>@Model.Tour.Days Days</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-currency-rupee text-success me-2 fs-5"></i>
+                                    <div>
+                                        <small class="text-muted d-block">Price per person</small>
+                                        <strong class="text-success fs-5">₹@Model.Tour.Price.ToString("N0")</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-pin-map text-warning me-2 fs-5"></i>
+                                    <div>
+                                        <small class="text-muted d-block">Locations</small>
+                                        <strong>@Model.Tour.Locations</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold">Tour Information</h5>
+                        <p class="text-muted">@Model.Tour.TourInfo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card shadow-sm border-0 mb-3">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3">Book This Tour</h5>
+                        <div class="d-grid gap-2">
+                            <a asp-page="/Bookings/Create" asp-route-tourId="@Model.Tour.Id"
+                               class="btn btn-primary btn-lg">
+                                <i class="bi bi-cart-plus me-2"></i>Book Now - ₹@Model.Tour.Price.ToString("N0")
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h6 class="fw-bold mb-3">Actions</h6>
+                        <div class="d-grid gap-2">
+                            <a asp-page="Edit" asp-route-id="@Model.Tour.Id" class="btn btn-outline-warning">
+                                <i class="bi bi-pencil me-2"></i>Edit Tour
+                            </a>
+                            <a asp-page="Delete" asp-route-id="@Model.Tour.Id" class="btn btn-outline-danger">
+                                <i class="bi bi-trash me-2"></i>Delete Tour
+                            </a>
+                            <a asp-page="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-2"></i>Back to Tours
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

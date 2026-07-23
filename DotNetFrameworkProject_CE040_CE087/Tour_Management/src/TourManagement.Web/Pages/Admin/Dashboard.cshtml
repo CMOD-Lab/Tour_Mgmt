@@ -1,0 +1,129 @@
+@page
+@model TourManagement.Web.Pages.Admin.DashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold"><i class="bi bi-speedometer2 me-2 text-primary"></i>Admin Dashboard</h1>
+        <a asp-page="/Users/Logout" class="btn btn-outline-danger btn-sm">
+            <i class="bi bi-box-arrow-right me-2"></i>Logout
+        </a>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm bg-primary text-white">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-white-50 mb-1">Total Tours</h6>
+                            <h2 class="fw-bold mb-0">@Model.TotalTours</h2>
+                        </div>
+                        <i class="bi bi-map-fill" style="font-size: 2.5rem; opacity: 0.5;"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0 pb-3">
+                    <a asp-page="/Tours/Index" class="text-white text-decoration-none small">
+                        <i class="bi bi-arrow-right me-1"></i>Manage Tours
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm bg-success text-white">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-white-50 mb-1">Total Users</h6>
+                            <h2 class="fw-bold mb-0">@Model.TotalUsers</h2>
+                        </div>
+                        <i class="bi bi-people-fill" style="font-size: 2.5rem; opacity: 0.5;"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0 pb-3">
+                    <a asp-page="/Users/Index" class="text-white text-decoration-none small">
+                        <i class="bi bi-arrow-right me-1"></i>Manage Users
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm bg-warning text-dark">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-dark-50 mb-1">Total Bookings</h6>
+                            <h2 class="fw-bold mb-0">@Model.TotalBookings</h2>
+                        </div>
+                        <i class="bi bi-calendar-check-fill" style="font-size: 2.5rem; opacity: 0.5;"></i>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-0 pb-3">
+                    <a asp-page="/Bookings/Index" class="text-dark text-decoration-none small">
+                        <i class="bi bi-arrow-right me-1"></i>Manage Bookings
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0 fw-bold"><i class="bi bi-lightning me-2"></i>Quick Actions</h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="d-grid gap-2">
+                        <a asp-page="/Tours/Create" class="btn btn-outline-primary">
+                            <i class="bi bi-plus-circle me-2"></i>Add New Tour
+                        </a>
+                        <a asp-page="/Tours/Index" class="btn btn-outline-secondary">
+                            <i class="bi bi-map me-2"></i>View All Tours
+                        </a>
+                        <a asp-page="/Bookings/Index" class="btn btn-outline-warning">
+                            <i class="bi bi-calendar-check me-2"></i>View All Bookings
+                        </a>
+                        <a asp-page="/Users/Index" class="btn btn-outline-success">
+                            <i class="bi bi-people me-2"></i>View All Users
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0 fw-bold"><i class="bi bi-clock-history me-2"></i>Recent Bookings</h5>
+                </div>
+                <div class="card-body p-0">
+                    @if (Model.RecentBookings.Any())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var booking in Model.RecentBookings)
+                            {
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <strong>@booking.TourName</strong>
+                                            <small class="text-muted d-block">@booking.FirstName - @booking.Email</small>
+                                        </div>
+                                        <small class="text-muted">@booking.BookingDate.ToString("dd MMM")</small>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="p-4 text-center text-muted">No recent bookings</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

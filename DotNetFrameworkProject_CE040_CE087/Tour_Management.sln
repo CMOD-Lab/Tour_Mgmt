@@ -1,9 +1,23 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32602.291
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tour_Management", "Tour_Management\Tour_Management.csproj", "{F45FB0DC-ACCF-4207-B390-344D54E2408E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourManagement.Domain", "Tour_Management\src\TourManagement.Domain\TourManagement.Domain.csproj", "{371E4A25-20D6-486F-B56D-301ECEF0673E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourManagement.Application", "Tour_Management\src\TourManagement.Application\TourManagement.Application.csproj", "{1618F6E6-4D3D-4A7E-8753-95B17284E73A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourManagement.Infrastructure", "Tour_Management\src\TourManagement.Infrastructure\TourManagement.Infrastructure.csproj", "{F5333FFD-C6DF-4E80-9677-707A0F1AC347}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourManagement.Web", "Tour_Management\src\TourManagement.Web\TourManagement.Web.csproj", "{2B1501C5-F612-4D39-AE45-8A801F626A97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourManagement.UnitTests", "Tour_Management\tests\TourManagement.UnitTests\TourManagement.UnitTests.csproj", "{5BA9976B-1D79-411B-BA4B-F8527F60ACA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourManagement.IntegrationTests", "Tour_Management\tests\TourManagement.IntegrationTests\TourManagement.IntegrationTests.csproj", "{3D97721F-4E91-4328-8134-9650653C60D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +25,41 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F45FB0DC-ACCF-4207-B390-344D54E2408E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F45FB0DC-ACCF-4207-B390-344D54E2408E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F45FB0DC-ACCF-4207-B390-344D54E2408E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F45FB0DC-ACCF-4207-B390-344D54E2408E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{371E4A25-20D6-486F-B56D-301ECEF0673E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{371E4A25-20D6-486F-B56D-301ECEF0673E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{371E4A25-20D6-486F-B56D-301ECEF0673E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{371E4A25-20D6-486F-B56D-301ECEF0673E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1618F6E6-4D3D-4A7E-8753-95B17284E73A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1618F6E6-4D3D-4A7E-8753-95B17284E73A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1618F6E6-4D3D-4A7E-8753-95B17284E73A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1618F6E6-4D3D-4A7E-8753-95B17284E73A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5333FFD-C6DF-4E80-9677-707A0F1AC347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5333FFD-C6DF-4E80-9677-707A0F1AC347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5333FFD-C6DF-4E80-9677-707A0F1AC347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5333FFD-C6DF-4E80-9677-707A0F1AC347}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B1501C5-F612-4D39-AE45-8A801F626A97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B1501C5-F612-4D39-AE45-8A801F626A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B1501C5-F612-4D39-AE45-8A801F626A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B1501C5-F612-4D39-AE45-8A801F626A97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BA9976B-1D79-411B-BA4B-F8527F60ACA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BA9976B-1D79-411B-BA4B-F8527F60ACA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BA9976B-1D79-411B-BA4B-F8527F60ACA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BA9976B-1D79-411B-BA4B-F8527F60ACA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D97721F-4E91-4328-8134-9650653C60D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D97721F-4E91-4328-8134-9650653C60D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D97721F-4E91-4328-8134-9650653C60D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D97721F-4E91-4328-8134-9650653C60D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{371E4A25-20D6-486F-B56D-301ECEF0673E} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{1618F6E6-4D3D-4A7E-8753-95B17284E73A} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{F5333FFD-C6DF-4E80-9677-707A0F1AC347} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{2B1501C5-F612-4D39-AE45-8A801F626A97} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{5BA9976B-1D79-411B-BA4B-F8527F60ACA8} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{3D97721F-4E91-4328-8134-9650653C60D3} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F51C861C-E394-4419-9671-DD0C4F528A3E}
