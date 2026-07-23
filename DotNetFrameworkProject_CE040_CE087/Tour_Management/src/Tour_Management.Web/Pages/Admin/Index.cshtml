@@ -1,0 +1,60 @@
+@page
+@model Tour_Management.Web.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>🔧 Admin Dashboard</h1>
+<hr />
+
+@if (HttpContext.Session.GetString("IsAdmin") != "true")
+{
+    <div class="alert alert-danger">Access denied. Please <a asp-page="/Users/Login">login as admin</a>.</div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+        <div class="col">
+            <div class="card text-white bg-primary h-100">
+                <div class="card-body text-center">
+                    <h2 class="card-title">@Model.TotalTours</h2>
+                    <p class="card-text">Total Tours</p>
+                    <a asp-page="/Tours/Index" class="btn btn-light btn-sm">Manage Tours</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-white bg-success h-100">
+                <div class="card-body text-center">
+                    <h2 class="card-title">@Model.TotalBookings</h2>
+                    <p class="card-text">Total Bookings</p>
+                    <a asp-page="/Bookings/Index" class="btn btn-light btn-sm">Manage Bookings</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-white bg-info h-100">
+                <div class="card-body text-center">
+                    <h2 class="card-title">@Model.TotalUsers</h2>
+                    <p class="card-text">Total Users</p>
+                    <a asp-page="/Users/Index" class="btn btn-light btn-sm">Manage Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white">Quick Actions</div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a asp-page="/Tours/Create" class="btn btn-outline-primary">➕ Add New Tour</a>
+                        <a asp-page="/Bookings/Index" class="btn btn-outline-success">📋 View All Bookings</a>
+                        <a asp-page="/Users/Index" class="btn btn-outline-info">👥 View All Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

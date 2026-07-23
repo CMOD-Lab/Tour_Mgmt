@@ -1,0 +1,48 @@
+@page
+@model Tour_Management.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <div class="jumbotron" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 20px; border-radius: 10px; margin-bottom: 30px;">
+        <h1 class="display-4">🌍 Welcome to Tour Management</h1>
+        <p class="lead">Discover amazing tours and book your dream vacation today!</p>
+        <hr class="my-4" style="border-color: rgba(255,255,255,0.3);" />
+        <a class="btn btn-light btn-lg" asp-page="/Tours/Index" role="button">Browse Tours</a>
+        <a class="btn btn-outline-light btn-lg ms-2" asp-page="/Users/Register" role="button">Sign Up</a>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h2>🗺️</h2>
+                    <h5 class="card-title">Explore Tours</h5>
+                    <p class="card-text">Browse our wide selection of tour packages to destinations around the world.</p>
+                    <a asp-page="/Tours/Index" class="btn btn-primary">View Tours</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h2>📋</h2>
+                    <h5 class="card-title">My Bookings</h5>
+                    <p class="card-text">View and manage your tour bookings in one convenient place.</p>
+                    <a asp-page="/Bookings/MyBookings" class="btn btn-primary">My Bookings</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h2>👤</h2>
+                    <h5 class="card-title">Your Profile</h5>
+                    <p class="card-text">Manage your account information and preferences.</p>
+                    <a asp-page="/Users/Profile" class="btn btn-primary">My Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

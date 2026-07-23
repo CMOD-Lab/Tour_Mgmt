@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "pYsByIOsmlo=",
+  "success": true,
+  "projectFilePath": "/modernize-data/studio-data/TNT1001/APP782786/transformed-code/168/studio-workspace/Backend/DotNetFrameworkProject_CE040_CE087/Tour_Management/src/Tour_Management.Domain/Tour_Management.Domain.csproj",
+  "expectedPackageFiles": [
+    "/app/.nuget/packages/microsoft.netcore.app.ref/8.0.16/microsoft.netcore.app.ref.8.0.16.nupkg.sha512",
+    "/app/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.16/microsoft.aspnetcore.app.ref.8.0.16.nupkg.sha512"
+  ],
+  "logs": []
+}

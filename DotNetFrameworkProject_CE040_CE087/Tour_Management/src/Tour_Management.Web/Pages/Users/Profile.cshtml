@@ -1,0 +1,40 @@
+@page
+@model Tour_Management.Web.Pages.Users.ProfileModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<h1>👤 My Profile</h1>
+<hr />
+
+@if (Model.User == null)
+{
+    <div class="alert alert-warning">Please <a asp-page="Login">login</a> to view your profile.</div>
+}
+else
+{
+    <dl class="row">
+        <dt class="col-sm-3">Full Name</dt>
+        <dd class="col-sm-9">@Model.User.FullName</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Model.User.Email</dd>
+
+        <dt class="col-sm-3">Gender</dt>
+        <dd class="col-sm-9">@(Model.User.Gender ?? "Not specified")</dd>
+
+        <dt class="col-sm-3">Date of Birth</dt>
+        <dd class="col-sm-9">@(Model.User.Dob ?? "Not specified")</dd>
+
+        <dt class="col-sm-3">Address</dt>
+        <dd class="col-sm-9">@(Model.User.Street ?? "") @(Model.User.City ?? "") @(Model.User.State ?? "")</dd>
+
+        <dt class="col-sm-3">Member Since</dt>
+        <dd class="col-sm-9">@Model.User.CreatedDate.ToString("dd MMM yyyy")</dd>
+    </dl>
+
+    <div class="d-flex gap-2">
+        <a asp-page="Edit" asp-route-id="@Model.User.UserId" class="btn btn-warning">Edit Profile</a>
+        <a asp-page="/Bookings/MyBookings" class="btn btn-primary">My Bookings</a>
+    </div>
+}

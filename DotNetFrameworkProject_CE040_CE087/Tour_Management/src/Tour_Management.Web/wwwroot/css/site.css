@@ -1,0 +1,32 @@
+/* Tour Management - Site CSS */
+
+body {
+    padding-bottom: 20px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+footer {
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.jumbotron {
+    border-radius: 10px;
+}
+
+.table th {
+    white-space: nowrap;
+}
