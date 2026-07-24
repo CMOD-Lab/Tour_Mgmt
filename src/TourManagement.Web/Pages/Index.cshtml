@@ -1,0 +1,63 @@
+@page
+@model TourManagement.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="jumbotron bg-primary text-white p-5 rounded mb-4">
+    <h1 class="display-4">Welcome to Tour Management</h1>
+    <p class="lead">Discover amazing tours and book your dream vacation today!</p>
+    <hr class="my-4" />
+    <a class="btn btn-light btn-lg" asp-page="/Tours/Index">Browse Tours</a>
+    @if (HttpContext.Session.GetString("UserEmail") == null)
+    {
+        <a class="btn btn-outline-light btn-lg ms-2" asp-page="/Users/Register">Register Now</a>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body text-center">
+                <h2>🗺️</h2>
+                <h5 class="card-title">Explore Destinations</h5>
+                <p class="card-text">Browse our wide selection of tour packages to amazing destinations.</p>
+                <a asp-page="/Tours/Index" class="btn btn-primary">View Tours</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body text-center">
+                <h2>📅</h2>
+                <h5 class="card-title">Easy Booking</h5>
+                <p class="card-text">Book your tour in just a few clicks with our simple booking system.</p>
+                @if (HttpContext.Session.GetString("UserEmail") != null)
+                {
+                    <a asp-page="/Bookings/MyBookings" class="btn btn-primary">My Bookings</a>
+                }
+                else
+                {
+                    <a asp-page="/Users/Login" class="btn btn-primary">Login to Book</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body text-center">
+                <h2>👤</h2>
+                <h5 class="card-title">Your Profile</h5>
+                <p class="card-text">Manage your account and view your booking history.</p>
+                @if (HttpContext.Session.GetString("UserEmail") != null)
+                {
+                    <a asp-page="/Users/Profile" class="btn btn-primary">View Profile</a>
+                }
+                else
+                {
+                    <a asp-page="/Users/Register" class="btn btn-primary">Create Account</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+@page
+@model TourManagement.Web.Pages.Users.ProfileModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+@if (Model.UserProfile != null)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">👤 My Profile</h4>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Full Name</dt>
+                        <dd class="col-sm-9">@Model.UserProfile.FullName</dd>
+                        <dt class="col-sm-3">Email</dt>
+                        <dd class="col-sm-9">@Model.UserProfile.Email</dd>
+                        <dt class="col-sm-3">Gender</dt>
+                        <dd class="col-sm-9">@Model.UserProfile.Gender</dd>
+                        <dt class="col-sm-3">Date of Birth</dt>
+                        <dd class="col-sm-9">@Model.UserProfile.Dob.ToString("MMMM dd, yyyy")</dd>
+                        <dt class="col-sm-3">Address</dt>
+                        <dd class="col-sm-9">@Model.UserProfile.Street, @Model.UserProfile.City, @Model.UserProfile.State</dd>
+                    </dl>
+                </div>
+                <div class="card-footer">
+                    <a asp-page="/Bookings/MyBookings" class="btn btn-primary">View My Bookings</a>
+                    <a asp-page="/Tours/Index" class="btn btn-success ms-2">Browse Tours</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        <p>You are not logged in. <a asp-page="/Users/Login">Please login</a>.</p>
+    </div>
+}

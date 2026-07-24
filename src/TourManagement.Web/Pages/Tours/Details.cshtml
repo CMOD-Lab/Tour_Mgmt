@@ -1,0 +1,56 @@
+@page "{id:int}"
+@model TourManagement.Web.Pages.Tours.DetailsModel
+@{
+    ViewData["Title"] = Model.Tour?.TourName ?? "Tour Details";
+}
+
+@if (Model.Tour != null)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h3 class="mb-0">@Model.Tour.TourName</h3>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.Tour.Pic))
+                {
+                    <img src="~/images/tours/@Model.Tour.Pic" class="card-img-top" alt="@Model.Tour.TourName" style="max-height:400px;object-fit:cover;" onerror="this.src='/images/default-tour.jpg'" />
+                }
+                <div class="card-body">
+                    <p class="lead">@Model.Tour.TourInfo</p>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-3">📍 Destination</dt>
+                        <dd class="col-sm-9">@Model.Tour.Place</dd>
+                        <dt class="col-sm-3">⏱️ Duration</dt>
+                        <dd class="col-sm-9">@Model.Tour.Days days</dd>
+                        <dt class="col-sm-3">💰 Price</dt>
+                        <dd class="col-sm-9">₹@Model.Tour.Price.ToString("N0")</dd>
+                        <dt class="col-sm-3">🗺️ Locations</dt>
+                        <dd class="col-sm-9">@Model.Tour.Locations</dd>
+                    </dl>
+                </div>
+                <div class="card-footer d-flex gap-2">
+                    <a asp-page="/Tours/Index" class="btn btn-secondary">← Back to Tours</a>
+                    @if (HttpContext.Session.GetString("UserEmail") != null)
+                    {
+                        <a asp-page="/Bookings/Create" asp-route-tourId="@Model.Tour.TourId" class="btn btn-success">Book This Tour</a>
+                    }
+                    else
+                    {
+                        <a asp-page="/Users/Login" class="btn btn-primary">Login to Book</a>
+                    }
+                    @if (HttpContext.Session.GetString("IsAdmin") == "true")
+                    {
+                        <a asp-page="/Tours/Edit" asp-route-id="@Model.Tour.TourId" class="btn btn-warning">Edit</a>
+                        <a asp-page="/Tours/Delete" asp-route-id="@Model.Tour.TourId" class="btn btn-danger">Delete</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">Tour not found. <a asp-page="/Tours/Index">Back to tours</a></div>
+}
