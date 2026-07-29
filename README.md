@@ -1,29 +1,57 @@
-# Tour_Management_Project
- simple asp.net application for booking of tours.
- 
-# Admin
-* Add Tour
-* Manage Tour 
-* See Bookings
-<img width="752" alt="image" src="https://user-images.githubusercontent.com/81226571/196478877-2a66ec3b-1a71-48ce-ab20-6013890ae19d.png">
-<img width="760" alt="image" src="https://user-images.githubusercontent.com/81226571/196479030-a0cbc14c-6085-4d7c-8de5-86414aa8be7f.png">
+# Tour Management System - .NET 8 Migration
 
-# User
-- Manage Profile
-- Book Tour
-- See his booking
-<img width="745" alt="image" src="https://user-images.githubusercontent.com/81226571/196478761-6a7d261a-1769-4c56-9052-b3e4a77722e5.png">
+## Overview
+This project is a complete migration of the ASP.NET Web Forms 4.7.2 Tour Management application to .NET 8 using clean architecture principles.
 
-## How to run?
-- Fork Project 
-- clone repository( git clone https://github.com/jaygajera17/Tour_Management_Asp.Net)
-- open app_data folder
-- right click on database file (.mdf) click modify connection.
-- you can also config your own database by step mention in [database.txt](https://github.com/jaygajera17/Tour_Management_Asp.Net/blob/main/Database.txt) file.
+## Architecture
+The solution follows Clean Architecture with four layers:
 
-## Important Links
-- 𝗬𝗼𝘂𝘁𝘂𝗯𝗲 𝗽𝗿𝗼𝗷𝗲𝗰𝘁 𝘃𝗶𝗱𝗲𝗼 𝗪𝗼𝗿𝗸𝗶𝗻𝗴 𝗗𝗲𝗺𝗼  ::---  [  click here  ](https://youtu.be/r-UfxsVzndk) [![youtube][youtube-shield]][youtube-url]
+```
+TourManagement/
+├── src/
+│   ├── TourManagement.Domain/          # Domain entities, interfaces, exceptions
+│   ├── TourManagement.Application/     # Business logic, services, DTOs, mappings
+│   ├── TourManagement.Infrastructure/  # EF Core, repositories, data access
+│   └── TourManagement.Web/             # Razor Pages UI, ViewModels, static files
+├── tests/
+│   └── TourManagement.UnitTests/       # xUnit unit tests
+└── docs/                               # Documentation
+```
 
+## Setup Instructions
 
-[youtube-shield]:https://img.shields.io/youtube/views/r-UfxsVzndk?style=social
-[youtube-url]:  https://youtu.be/r-UfxsVzndk
+### Prerequisites
+- .NET 8 SDK
+- SQL Server (LocalDB or full instance)
+
+### Database Setup
+1. Update the connection string in `src/TourManagement.Web/appsettings.json`
+2. Run migrations: `dotnet ef database update --project src/TourManagement.Infrastructure --startup-project src/TourManagement.Web`
+
+### Running the Application
+```bash
+cd src/TourManagement.Web
+dotnet run
+```
+
+### Running Tests
+```bash
+dotnet test
+```
+
+## Key Features
+- Tour browsing and search
+- User registration and login
+- Tour booking management
+- Admin dashboard with CRUD operations
+- Session-based authentication
+
+## Migration Notes
+- Migrated from ASP.NET Web Forms 4.7.2 to .NET 8 Razor Pages
+- Replaced ADO.NET with Entity Framework Core 8.0
+- Replaced System.Web with ASP.NET Core equivalents
+- Replaced Web.config with appsettings.json
+- Implemented clean architecture with proper separation of concerns
+- Added dependency injection throughout
+- Implemented async/await patterns
+- Added comprehensive error handling and logging with Serilog
