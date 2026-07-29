@@ -6,6 +6,7 @@ namespace TourManagement.Infrastructure.Data;
 
 /// <summary>
 /// Entity Framework Core DbContext for the Tour Management application.
+/// Configured for PostgreSQL with snake_case naming conventions.
 /// </summary>
 public class TourManagementDbContext : DbContext
 {
@@ -26,6 +27,12 @@ public class TourManagementDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        // Set default schema to public for PostgreSQL
+        modelBuilder.HasDefaultSchema("public");
+
+        // Configure migration history table with snake_case naming
+        modelBuilder.HasAnnotation("Relational:TableName", "__ef_migrations_history");
 
         modelBuilder.ApplyConfiguration(new TourConfiguration());
         modelBuilder.ApplyConfiguration(new UserInfoConfiguration());

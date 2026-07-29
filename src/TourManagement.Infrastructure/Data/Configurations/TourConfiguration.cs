@@ -6,45 +6,46 @@ namespace TourManagement.Infrastructure.Data.Configurations;
 
 /// <summary>
 /// EF Core entity configuration for the Tour entity.
+/// Updated for PostgreSQL compatibility.
 /// </summary>
 public class TourConfiguration : IEntityTypeConfiguration<Tour>
 {
     public void Configure(EntityTypeBuilder<Tour> builder)
     {
-        builder.ToTable("Tour");
+        builder.ToTable("tour");
 
         builder.HasKey(t => t.TourId);
 
         builder.Property(t => t.TourId)
-            .HasColumnName("TOUR_ID")
+            .HasColumnName("tour_id")
             .UseIdentityColumn();
 
         builder.Property(t => t.TourName)
-            .HasColumnName("TOUR_NAME")
+            .HasColumnName("tour_name")
             .HasMaxLength(20)
             .IsRequired();
 
         builder.Property(t => t.Place)
-            .HasColumnName("PLACE")
+            .HasColumnName("place")
             .HasMaxLength(20)
             .IsRequired();
 
         builder.Property(t => t.Days)
-            .HasColumnName("DAYS")
+            .HasColumnName("days")
             .IsRequired();
 
         builder.Property(t => t.Price)
-            .HasColumnName("PRICE")
+            .HasColumnName("price")
             .HasColumnType("numeric(6,0)")
             .IsRequired();
 
         builder.Property(t => t.Locations)
-            .HasColumnName("LOCATIONS")
+            .HasColumnName("locations")
             .HasMaxLength(100)
             .IsRequired();
 
         builder.Property(t => t.TourInfo)
-            .HasColumnName("TOUR_INFO")
+            .HasColumnName("tour_info")
             .HasMaxLength(200)
             .IsRequired();
 
@@ -53,9 +54,16 @@ public class TourConfiguration : IEntityTypeConfiguration<Tour>
             .HasMaxLength(200);
 
         builder.Property(t => t.CreatedDate)
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasColumnName("created_date")
+            .HasColumnType("timestamp with time zone")
+            .HasDefaultValueSql("NOW()");
+
+        builder.Property(t => t.ModifiedDate)
+            .HasColumnName("modified_date")
+            .HasColumnType("timestamp with time zone");
 
         builder.Property(t => t.IsActive)
+            .HasColumnName("is_active")
             .HasDefaultValue(true);
     }
 }
