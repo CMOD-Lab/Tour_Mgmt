@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using System.Data.SqlClient;
+using Npgsql;
 using System.Configuration;
 
 namespace Tour_Management
@@ -22,17 +22,17 @@ namespace Tour_Management
         }
         public void refreshdata()
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            NpgsqlConnection conn = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
             conn.Open();
-            string insertQuery = "select * from Tour";
-            SqlCommand com = new SqlCommand(insertQuery, conn);
-          // GridView1.DataSource = insertQuery;
+            string selectQuery = "select * from Tour";
+            NpgsqlCommand com = new NpgsqlCommand(selectQuery, conn);
+          // GridView1.DataSource = selectQuery;
            // GridView1.DataBind();
 
 
-            // SqlConnection con = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;User Instance=True");
-        //    SqlCommand cmd = new SqlCommand("select * from tbl_data", con);
-         //   SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            // NpgsqlConnection con = new NpgsqlConnection("Host=localhost;Port=5432;Database=tourdb;Username=postgres;Password=postgres;");
+        //    NpgsqlCommand cmd = new NpgsqlCommand("select * from tbl_data", con);
+         //   NpgsqlDataAdapter sda = new NpgsqlDataAdapter(cmd);
            // DataTable dt = new DataTable();
             //sda.Fill(dt);
            // GridView1.DataSource = dt;
