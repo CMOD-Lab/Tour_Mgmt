@@ -1,0 +1,48 @@
+@page "{id:int}"
+@model TourBooking.Web.Pages.Bookings.DetailsModel
+@{
+    ViewData["Title"] = "Booking Details";
+}
+
+@if (Model.Booking != null)
+{
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">Booking Details</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Booking ID</th>
+                            <td>@Model.Booking.TourId</td>
+                        </tr>
+                        <tr>
+                            <th>Tour Name</th>
+                            <td>@Model.Booking.TourName</td>
+                        </tr>
+                        <tr>
+                            <th>Place</th>
+                            <td>@Model.Booking.Place</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>@Model.Booking.Email</td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td>@Model.Booking.FirstName</td>
+                        </tr>
+                    </table>
+                    <a asp-page="/Bookings/MyBookings" class="btn btn-secondary">Back to My Bookings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">Booking not found.</div>
+    <a asp-page="/Bookings/MyBookings" class="btn btn-secondary">Back to My Bookings</a>
+}

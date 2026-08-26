@@ -1,0 +1,41 @@
+@page
+@model TourBooking.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="jumbotron text-center py-5 bg-primary text-white rounded mb-4">
+    <h1 class="display-4">Welcome to Tour Booking</h1>
+    <p class="lead">Discover amazing tours and book your dream vacation today!</p>
+    <a asp-page="/Tours/Index" class="btn btn-light btn-lg">Browse Tours</a>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Explore Tours</h5>
+                <p class="card-text">Browse our wide selection of tour packages across India.</p>
+                <a asp-page="/Tours/Index" class="btn btn-primary">View Tours</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Book Now</h5>
+                <p class="card-text">Register and book your favorite tour package easily.</p>
+                <a asp-page="/Users/Register" class="btn btn-success">Register</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">My Bookings</h5>
+                <p class="card-text">View and manage all your tour bookings in one place.</p>
+                <a asp-page="/Bookings/MyBookings" class="btn btn-info">My Bookings</a>
+            </div>
+        </div>
+    </div>
+</div>

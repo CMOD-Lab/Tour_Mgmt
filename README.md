@@ -1,29 +1,58 @@
-# Tour_Management_Project
- simple asp.net application for booking of tours.
- 
-# Admin
-* Add Tour
-* Manage Tour 
-* See Bookings
-<img width="752" alt="image" src="https://user-images.githubusercontent.com/81226571/196478877-2a66ec3b-1a71-48ce-ab20-6013890ae19d.png">
-<img width="760" alt="image" src="https://user-images.githubusercontent.com/81226571/196479030-a0cbc14c-6085-4d7c-8de5-86414aa8be7f.png">
+# Tour Booking System - .NET 8 Migration
 
-# User
-- Manage Profile
-- Book Tour
-- See his booking
-<img width="745" alt="image" src="https://user-images.githubusercontent.com/81226571/196478761-6a7d261a-1769-4c56-9052-b3e4a77722e5.png">
+## Overview
+This is a Tour Booking web application migrated from ASP.NET Web Forms (.NET 4.7.2) to .NET 8 using clean architecture principles with Razor Pages.
 
-## How to run?
-- Fork Project 
-- clone repository( git clone https://github.com/jaygajera17/Tour_Management_Asp.Net)
-- open app_data folder
-- right click on database file (.mdf) click modify connection.
-- you can also config your own database by step mention in [database.txt](https://github.com/jaygajera17/Tour_Management_Asp.Net/blob/main/Database.txt) file.
+## Architecture
+The solution follows Clean Architecture with four layers:
 
-## Important Links
-- 𝗬𝗼𝘂𝘁𝘂𝗯𝗲 𝗽𝗿𝗼𝗷𝗲𝗰𝘁 𝘃𝗶𝗱𝗲𝗼 𝗪𝗼𝗿𝗸𝗶𝗻𝗴 𝗗𝗲𝗺𝗼  ::---  [  click here  ](https://youtu.be/r-UfxsVzndk) [![youtube][youtube-shield]][youtube-url]
+- **TourBooking.Domain** - Domain entities, interfaces, and exceptions
+- **TourBooking.Application** - Business logic services, DTOs, AutoMapper profiles
+- **TourBooking.Infrastructure** - EF Core DbContext, repositories, data configurations
+- **TourBooking.Web** - ASP.NET Core Razor Pages UI layer
 
+## Prerequisites
+- .NET 8 SDK
+- SQL Server (LocalDB or full instance)
 
-[youtube-shield]:https://img.shields.io/youtube/views/r-UfxsVzndk?style=social
-[youtube-url]:  https://youtu.be/r-UfxsVzndk
+## Setup Instructions
+
+1. **Clone the repository**
+2. **Update connection string** in `src/TourBooking.Web/appsettings.json`
+3. **Run database migrations** (or create the database manually using `Tour_Mgmt_SQL.sql`)
+4. **Run the application**:
+   ```bash
+   cd src/TourBooking.Web
+   dotnet run
+   ```
+
+## Database Setup
+Run the SQL scripts in `Tour_Mgmt_SQL.sql` to create the database and tables:
+- `tourdb` database
+- `UserInfo` table
+- `Tour` table
+- `booking` table
+
+## Default Admin Credentials
+- Email: `admin@gmail.com`
+- Password: `admin`
+
+## Features
+- User registration and login
+- Browse and search tours
+- Book tours
+- View and cancel bookings
+- Admin panel for managing tours, users, and bookings
+
+## Migration Notes
+See `docs/MIGRATION_NOTES.md` for details on what was migrated from Web Forms.
+
+## Build
+```bash
+dotnet build TourBooking.sln
+```
+
+## Test
+```bash
+dotnet test TourBooking.sln
+```

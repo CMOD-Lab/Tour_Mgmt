@@ -1,0 +1,46 @@
+@page
+@model TourBooking.Web.Pages.Admin.DashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2>Admin Dashboard</h2>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body text-center">
+                <h3>@Model.TourCount</h3>
+                <p>Total Tours</p>
+                <a asp-page="/Admin/Tours" class="btn btn-light btn-sm">Manage Tours</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-body text-center">
+                <h3>@Model.UserCount</h3>
+                <p>Total Users</p>
+                <a asp-page="/Admin/Users" class="btn btn-light btn-sm">Manage Users</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-info text-white mb-4">
+            <div class="card-body text-center">
+                <h3>@Model.BookingCount</h3>
+                <p>Total Bookings</p>
+                <a asp-page="/Admin/Bookings" class="btn btn-light btn-sm">View Bookings</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-6">
+        <a asp-page="/Admin/Tours" class="btn btn-primary btn-lg w-100 mb-3">Manage Tours</a>
+    </div>
+    <div class="col-md-6">
+        <a asp-page="/Admin/Users" class="btn btn-success btn-lg w-100 mb-3">Manage Users</a>
+    </div>
+</div>
