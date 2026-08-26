@@ -1,0 +1,6 @@
+{
+  "TourBooking.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/modernize-data\/studio-data\/TNT1001\/APP339222\/transformed-code\/121\/studio-workspace\/TourBooking\/src\/TourBooking.Application",
+  "TourBooking.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/modernize-data\/studio-data\/TNT1001\/APP339222\/transformed-code\/121\/studio-workspace\/TourBooking\/src\/TourBooking.Domain",
+  "TourBooking.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/modernize-data\/studio-data\/TNT1001\/APP339222\/transformed-code\/121\/studio-workspace\/TourBooking\/src\/TourBooking.Infrastructure",
+  "TourBooking.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/modernize-data\/studio-data\/TNT1001\/APP339222\/transformed-code\/121\/studio-workspace\/TourBooking\/src\/TourBooking.Web"
+}

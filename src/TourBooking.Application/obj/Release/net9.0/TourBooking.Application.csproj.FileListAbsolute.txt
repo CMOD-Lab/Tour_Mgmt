@@ -1,0 +1,16 @@
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/bin/Release/net9.0/TourBooking.Application.deps.json
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/bin/Release/net9.0/TourBooking.Application.dll
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/bin/Release/net9.0/TourBooking.Application.pdb
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/bin/Release/net9.0/TourBooking.Domain.dll
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/bin/Release/net9.0/TourBooking.Domain.pdb
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/obj/Release/net9.0/TourBooking.Application.csproj.AssemblyReference.cache
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/obj/Release/net9.0/TourBooking.Application.GeneratedMSBuildEditorConfig.editorconfig
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/obj/Release/net9.0/TourBooking.Application.AssemblyInfoInputs.cache
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/obj/Release/net9.0/TourBooking.Application.AssemblyInfo.cs
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/obj/Release/net9.0/TourBooking.Application.csproj.CoreCompileInputs.cache
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/obj/Release/net9.0/TourBooking.Application.sourcelink.json
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/obj/Release/net9.0/TourBook.FA486468.Up2Date
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/obj/Release/net9.0/TourBooking.Application.dll
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/obj/Release/net9.0/refint/TourBooking.Application.dll
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/obj/Release/net9.0/TourBooking.Application.pdb
+/modernize-data/studio-data/TNT1001/APP339222/transformed-code/121/studio-workspace/TourBooking/src/TourBooking.Application/obj/Release/net9.0/ref/TourBooking.Application.dll
