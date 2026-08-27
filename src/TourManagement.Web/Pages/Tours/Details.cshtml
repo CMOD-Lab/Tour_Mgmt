@@ -1,0 +1,66 @@
+@page "{id:int}"
+@model TourManagement.Web.Pages.Tours.DetailsModel
+@{
+    ViewData["Title"] = Model.Tour?.TourName ?? "Tour Details";
+}
+
+@if (Model.Tour == null)
+{
+    <div class="alert alert-warning">Tour not found.</div>
+    <a asp-page="Index" class="btn btn-secondary">Back to Tours</a>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-8">
+            <h1>@Model.Tour.TourName</h1>
+            <hr />
+            <div class="row mb-3">
+                <div class="col-sm-4"><strong>Destination:</strong></div>
+                <div class="col-sm-8">@Model.Tour.Place</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4"><strong>Duration:</strong></div>
+                <div class="col-sm-8">@Model.Tour.Days days</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4"><strong>Price:</strong></div>
+                <div class="col-sm-8 text-success fw-bold">@Model.Tour.Price.ToString("C")</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4"><strong>Locations Covered:</strong></div>
+                <div class="col-sm-8">@Model.Tour.Locations</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4"><strong>Tour Information:</strong></div>
+                <div class="col-sm-8">@Model.Tour.TourInfo</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-4"><strong>Added On:</strong></div>
+                <div class="col-sm-8">@Model.Tour.CreatedDate.ToString("MMMM dd, yyyy")</div>
+            </div>
+            <div class="mt-4">
+                <a asp-page="/Bookings/Create" asp-route-tourId="@Model.Tour.TourId" asp-route-tourName="@Model.Tour.TourName" class="btn btn-success btn-lg me-2">
+                    <i class="bi bi-calendar-check"></i> Book This Tour
+                </a>
+                <a asp-page="Index" class="btn btn-secondary">Back to Tours</a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-page="Edit" asp-route-id="@Model.Tour.TourId" class="btn btn-warning ms-2">Edit</a>
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+            @if (!string.IsNullOrEmpty(Model.Tour.Pic))
+            {
+                <img src="/Tour_pics/@Model.Tour.Pic" class="img-fluid rounded shadow" alt="@Model.Tour.TourName" onerror="this.src='/images/no-image.jpg'" />
+            }
+            else
+            {
+                <div class="bg-secondary rounded d-flex align-items-center justify-content-center" style="height: 300px;">
+                    <i class="bi bi-image text-white" style="font-size: 4rem;"></i>
+                </div>
+            }
+        </div>
+    </div>
+}

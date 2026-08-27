@@ -1,0 +1,57 @@
+@page
+@model TourManagement.Web.Pages.Admin.DashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>Admin Dashboard</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body">
+                <h5 class="card-title">Total Tours</h5>
+                <h2>@Model.TotalTours</h2>
+                <a asp-page="/Tours/Index" class="btn btn-light btn-sm mt-2">Manage Tours</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card bg-success text-white shadow">
+            <div class="card-body">
+                <h5 class="card-title">Total Bookings</h5>
+                <h2>@Model.TotalBookings</h2>
+                <a asp-page="/Bookings/Index" class="btn btn-light btn-sm mt-2">View Bookings</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card bg-info text-white shadow">
+            <div class="card-body">
+                <h5 class="card-title">Total Users</h5>
+                <h2>@Model.TotalUsers</h2>
+                <a asp-page="/Admin/Users" class="btn btn-light btn-sm mt-2">Manage Users</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Quick Actions</div>
+            <div class="card-body">
+                <a asp-page="/Tours/Create" class="btn btn-primary mb-2 d-block">
+                    <i class="bi bi-plus-circle"></i> Add New Tour
+                </a>
+                <a asp-page="/Bookings/Index" class="btn btn-success mb-2 d-block">
+                    <i class="bi bi-list-check"></i> View All Bookings
+                </a>
+                <a asp-page="/Admin/Users" class="btn btn-info mb-2 d-block text-white">
+                    <i class="bi bi-people"></i> Manage Users
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
