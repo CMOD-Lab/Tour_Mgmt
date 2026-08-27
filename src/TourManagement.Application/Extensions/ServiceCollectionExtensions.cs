@@ -17,7 +17,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         // Register AutoMapper with the mapping profile
-        services.AddAutoMapper(typeof(MappingProfile));
+        services.AddAutoMapper(MappingProfile.Configure);
 
         // Register application services
         services.AddScoped<ITourService, TourService>();

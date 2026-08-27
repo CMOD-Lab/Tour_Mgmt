@@ -48,9 +48,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "AutoMapper": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[15.1.3, )"
             },
             "BCrypt.Net-Next": {
               "target": "Package",
@@ -312,7 +312,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[15.1.3, )"
             },
             "FluentAssertions": {
               "target": "Package",

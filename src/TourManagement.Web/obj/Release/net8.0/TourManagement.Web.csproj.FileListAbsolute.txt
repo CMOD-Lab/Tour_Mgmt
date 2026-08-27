@@ -8,7 +8,6 @@
 /modernize-data/studio-data/TNT1001/APP681433/transformed-code/137/studio-workspace/TourMGMT/src/TourManagement.Web/bin/Release/net8.0/TourManagement.Web.dll
 /modernize-data/studio-data/TNT1001/APP681433/transformed-code/137/studio-workspace/TourMGMT/src/TourManagement.Web/bin/Release/net8.0/TourManagement.Web.pdb
 /modernize-data/studio-data/TNT1001/APP681433/transformed-code/137/studio-workspace/TourMGMT/src/TourManagement.Web/bin/Release/net8.0/AutoMapper.dll
-/modernize-data/studio-data/TNT1001/APP681433/transformed-code/137/studio-workspace/TourMGMT/src/TourManagement.Web/bin/Release/net8.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 /modernize-data/studio-data/TNT1001/APP681433/transformed-code/137/studio-workspace/TourMGMT/src/TourManagement.Web/bin/Release/net8.0/Azure.Core.dll
 /modernize-data/studio-data/TNT1001/APP681433/transformed-code/137/studio-workspace/TourMGMT/src/TourManagement.Web/bin/Release/net8.0/Azure.Identity.dll
 /modernize-data/studio-data/TNT1001/APP681433/transformed-code/137/studio-workspace/TourMGMT/src/TourManagement.Web/bin/Release/net8.0/BCrypt.Net-Next.dll
