@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
 
 namespace Tour_Management
 {
@@ -22,7 +21,10 @@ namespace Tour_Management
         }
         public void refreshdata()
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            // Replaced ConfigurationManager.ConnectionStrings (Web.config XDT transform) with
+            // environment variable to support AKS ConfigMaps / Azure Key Vault CSI Driver (cz-dotnet-0055)
+            string connectionString = System.Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
             string insertQuery = "select * from Tour";
             SqlCommand com = new SqlCommand(insertQuery, conn);

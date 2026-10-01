@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -18,7 +17,10 @@ namespace Tour_Management
 
         protected void Register_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            // Replaced ConfigurationManager.ConnectionStrings (Web.config XDT transform) with
+            // environment variable to support AKS ConfigMaps / Azure Key Vault CSI Driver (cz-dotnet-0055)
+            string connectionString = System.Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
             string insertQuery = "insert into UserInfo(Email,FirstName,LastName,Gender,Password,dob,Street,City,State) values(@email,@FirstName,@LastName,@Gender,@Password,@dob,@Street,@City,@State)";
             SqlCommand com = new SqlCommand(insertQuery, conn);

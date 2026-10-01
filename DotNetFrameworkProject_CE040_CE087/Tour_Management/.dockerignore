@@ -1,0 +1,98 @@
+# .dockerignore for Tour_Management Web Forms Application
+# Excludes unnecessary files to minimize Windows container image size
+# for AKS Windows node pool deployment via Azure Container Registry
+
+# -------------------------------------------------------
+# Build output directories (rebuilt inside Docker)
+# -------------------------------------------------------
+bin/
+obj/
+
+# -------------------------------------------------------
+# PDB / debug symbol files
+# -------------------------------------------------------
+**/*.pdb
+**/*.mdb
+
+# -------------------------------------------------------
+# NOTE: C# source files (*.cs, *.aspx.cs, *.aspx.designer.cs) are intentionally
+# NOT excluded here because they are required by msbuild during the Docker build stage.
+# *.csproj, *.sln, *.targets, *.props are also required by msbuild.
+# -------------------------------------------------------
+
+# -------------------------------------------------------
+# NuGet packages (restored during Docker build stage)
+# -------------------------------------------------------
+packages/
+*.nupkg
+**/*.nuspec
+
+# -------------------------------------------------------
+# Roslyn compiler binaries (provided by SDK image)
+# -------------------------------------------------------
+bin/roslyn/
+
+# -------------------------------------------------------
+# Visual Studio user-specific and IDE files
+# -------------------------------------------------------
+*.user
+*.suo
+*.userprefs
+*.userosscache
+*.sln.docstates
+.vs/
+**/.vs/
+.vscode/
+
+# -------------------------------------------------------
+# Temporary, log, and OS-generated files
+# -------------------------------------------------------
+*.log
+*.tmp
+*.temp
+Thumbs.db
+.DS_Store
+desktop.ini
+ehthumbs.db
+
+# -------------------------------------------------------
+# App_Data local database files (use external DB in containers)
+# -------------------------------------------------------
+App_Data/*.mdf
+App_Data/*.ldf
+App_Data/*.sdf
+
+# -------------------------------------------------------
+# Test projects and test output
+# -------------------------------------------------------
+*Tests/
+*Test/
+TestResults/
+
+# -------------------------------------------------------
+# Documentation and repository metadata
+# -------------------------------------------------------
+*.md
+README*
+CHANGELOG*
+LICENSE*
+.git/
+.gitignore
+.gitattributes
+.editorconfig
+
+# -------------------------------------------------------
+# CI/CD pipeline files (not needed in image)
+# -------------------------------------------------------
+.github/
+.azure/
+azure-pipelines.yml
+Jenkinsfile
+
+# -------------------------------------------------------
+# Kubernetes and deployment artifacts (not needed in image)
+# -------------------------------------------------------
+kubernetes/
+scripts/
+docs/
+docker-compose.yml
